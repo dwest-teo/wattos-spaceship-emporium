@@ -1,0 +1,93 @@
+{
+  "name": "wattos-spaceship-emporium",
+  "version": "0.0.1",
+  "description": "Node.js/React universal web app, offering only the finest low-mileage, pre-loved spaceships",
+  "author": {
+    "name": "Donny West",
+    "email": "donnywest@gmail.com",
+    "url": "https://donnywest.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwest-teo/wattos-spaceship-emporium.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dwest-teo/wattos-spaceship-emporium/issues"
+  },
+  "homepage": "https://github.com/dwest-teo/wattos-spaceship-emporium#readme",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "now": {
+    "alias": "watto",
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": "4000"
+    }
+  },
+  "dependencies": {
+    "next": "^2.1.1",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "eslint-config-xo-react": "^0.11.1",
+    "eslint-plugin-react": "^6.10.3",
+    "xo": "^0.18.1"
+  },
+  "engines": {
+    "node": "7.7.3"
+  },
+  "xo": {
+    "envs": [
+      "node",
+      "es6",
+      "browser"
+    ],
+    "extends": "xo-react",
+    "space": true,
+    "rules": {
+      "import/order": 0,
+      "unicorn/filename-case": 0,
+      "camelcase": 0,
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "arrow-parens": [
+        2,
+        "as-needed",
+        {
+          "requireForBlockBody": true
+        }
+      ],
+      "operator-linebreak": 0,
+      "capitalized-comments": 0,
+      "react/jsx-closing-bracket-location": [
+        2,
+        "tag-aligned"
+      ],
+      "react/jsx-space-before-closing": [
+        2,
+        "always"
+      ],
+      "react/jsx-tag-spacing": [
+        2,
+        {
+          "beforeSelfClosing": "always"
+        }
+      ],
+      "react/forbid-component-props": 0,
+      "react/require-default-props": 1,
+      "react/jsx-handler-names": 1
+    }
+  }
+}
