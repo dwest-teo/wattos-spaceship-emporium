@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { StyletronProvider } from 'styletron-react';
 import getStyletron from '../../lib/styletron';
 
-const Page = ({ children }) => (
+const StyleProvider = ({ children }) => (
   <StyletronProvider styletron={getStyletron()}>
     {children}
   </StyletronProvider>
 );
 
-Page.propTypes = {
+StyleProvider.propTypes = {
   children: PropTypes.node,
 };
 
-export default Page;
+export default StyleProvider;

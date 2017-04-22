@@ -1,18 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from 'styletron-react';
-import Page from './page';
-
-const Root = styled('div', {
-  width: '100%',
-});
+import StyleProvider from './style-provider';
+import PageRoot from './page-root';
 
 const App = ({ children }) => (
-  <Page>
-    <Root>
+  <StyleProvider>
+    <PageRoot>
       {children}
-    </Root>
-  </Page>
+    </PageRoot>
+  </StyleProvider>
 );
 
 App.propTypes = {

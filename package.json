@@ -88,7 +88,7 @@
         }
       ],
       "react/forbid-component-props": 0,
-      "react/require-default-props": 1,
+      "react/require-default-props": 0,
       "react/jsx-handler-names": 1
     }
   }
