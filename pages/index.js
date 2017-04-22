@@ -1,14 +1,17 @@
+import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
-import 'isomorphic-fetch';
 import App from '../components/app';
 import Header from '../components/header';
+import { OuterContainer } from '../components/base';
 import ProductGrid from '../components/product-grid';
 
 const Home = props => (
   <App>
     <Header />
-    <ProductGrid products={props.products} />
+    <OuterContainer>
+      <ProductGrid products={props.products} />
+    </OuterContainer>
   </App>
 );
 

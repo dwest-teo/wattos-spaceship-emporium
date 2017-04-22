@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from '../product-card';
-import { Container } from './elems';
+import { Flex } from '../base';
 
 const dummyImgs = [
   'https://www.stevensegallery.com/150/150',
@@ -17,7 +17,11 @@ const dummyImgs = [
 const placeholderImg = idx => dummyImgs[idx];
 
 const ProductGrid = ({ products }) => (
-  <Container>
+  <Flex
+    flexWrap="wrap"
+    width={1}
+    mt={2}
+  >
     {products.map((product, i) => (
       <ProductCard
         key={i}
@@ -26,7 +30,7 @@ const ProductGrid = ({ products }) => (
         imgUrl={placeholderImg(i)}
       />
     ))}
-  </Container>
+  </Flex>
 );
 
 ProductGrid.propTypes = {

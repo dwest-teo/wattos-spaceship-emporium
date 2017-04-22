@@ -29,14 +29,12 @@
     }
   },
   "dependencies": {
+    "axs": "^1.0.6",
     "isomorphic-fetch": "^2.2.1",
     "next": "^2.1.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "styletron-client": "^2.5.7",
-    "styletron-react": "^2.5.7",
-    "styletron-server": "^2.5.7"
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
     "eslint-config-xo-react": "^0.11.1",
@@ -55,7 +53,11 @@
     "extends": "xo-react",
     "space": true,
     "rules": {
-      "import/no-unassigned-import": 0,
+      "import/no-unassigned-import": 1,
+      "array-bracket-spacing": [
+        2,
+        "always"
+      ],
       "object-curly-spacing": [
         "error",
         "always"

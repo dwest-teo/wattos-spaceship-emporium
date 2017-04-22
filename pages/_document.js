@@ -1,13 +1,13 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { flush } from '../lib/styletron';
+import { cxs } from 'axs';
+import globalStyles from '../lib/global-styles';
 
 class CustomDocument extends Document {
   static getInitialProps({ renderPage }) {
     const page = renderPage();
-    const styletron = flush();
-    const stylesheets = styletron ? styletron.getStylesheets() : [];
-    return { ...page, stylesheets };
+    const style = cxs.getCss();
+    return { ...page, style };
   }
 
   render() {
@@ -15,14 +15,8 @@ class CustomDocument extends Document {
       <html>
         <Head>
           <title>Add a Title!!!</title>
-          {this.props.stylesheets.map((sheet, i) => (
-            <style
-              key={i}
-              className="_styletron_hydrate_"
-              dangerouslySetInnerHTML={{ __html: sheet.css }}
-              media={sheet.media || ''}
-            />
-          ))}
+          <style>{globalStyles}</style>
+          <style dangerouslySetInnerHTML={{ __html: this.props.style }} />
         </Head>
         <body>
           <Main />
