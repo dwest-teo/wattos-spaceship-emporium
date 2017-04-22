@@ -22,7 +22,7 @@
     "start": "next start"
   },
   "now": {
-    "alias": "watto",
+    "alias": "watto.donnywest.com",
     "env": {
       "NODE_ENV": "production",
       "PORT": "4000"
