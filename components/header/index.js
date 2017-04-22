@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container } from './elems';
+import { Container, NavItem } from './elems';
 
 const Header = () => (
   <Container>
-    Wattos Space Emporium
+    <NavItem>Wattos Space Emporium</NavItem>
   </Container>
 );
 
