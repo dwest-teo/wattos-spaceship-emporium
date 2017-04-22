@@ -32,7 +32,10 @@
     "next": "^2.1.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "styletron-client": "^2.5.7",
+    "styletron-react": "^2.5.7",
+    "styletron-server": "^2.5.7"
   },
   "devDependencies": {
     "eslint-config-xo-react": "^0.11.1",
@@ -51,9 +54,6 @@
     "extends": "xo-react",
     "space": true,
     "rules": {
-      "import/order": 0,
-      "unicorn/filename-case": 0,
-      "camelcase": 0,
       "object-curly-spacing": [
         "error",
         "always"
@@ -71,6 +71,8 @@
       ],
       "operator-linebreak": 0,
       "capitalized-comments": 0,
+      "react/no-danger": 1,
+      "react/no-array-index-key": 0,
       "react/jsx-closing-bracket-location": [
         2,
         "tag-aligned"

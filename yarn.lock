@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@types/react@*":
+  version "15.0.22"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.22.tgz#50803cde8d89f60a9b034f2dd0d619bc5f0273b5"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -895,6 +899,10 @@ boom@2.x.x:
   resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
   dependencies:
     hoek "2.x.x"
+
+bowser@^1.0.0:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/bowser/-/bowser-1.6.1.tgz#9157e9498f456e937173a2918f3b2161e5353eb3"
 
 boxen@^1.0.0:
   version "1.0.0"
@@ -2262,6 +2270,10 @@ https-browserify@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-0.0.1.tgz#3f91365cabe60b77ed0ebba24b454e3e09d95a82"
 
+hyphenate-style-name@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
+
 iconv-lite@~0.4.13:
   version "0.4.15"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb"
@@ -2306,6 +2318,13 @@ inherits@2.0.1:
 ini@~1.3.0:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
+
+inline-style-prefixer@^2.0.1:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-2.0.5.tgz#c153c7e88fd84fef5c602e95a8168b2770671fe7"
+  dependencies:
+    bowser "^1.0.0"
+    hyphenate-style-name "^1.0.1"
 
 inquirer@^0.12.0:
   version "0.12.0"
@@ -4042,6 +4061,38 @@ styled-jsx@0.5.7:
     object.entries "1.0.4"
     source-map "0.5.6"
     string-hash "1.1.1"
+
+styletron-client@^2.5.7:
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/styletron-client/-/styletron-client-2.5.7.tgz#104fa4dc564cd3fe78eb92488e5ef9039c9e242f"
+  dependencies:
+    styletron-core "^2.5.7"
+
+styletron-core@^2.5.7:
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/styletron-core/-/styletron-core-2.5.7.tgz#2c4a1fae537b42235462e438c24ab619bbf8993e"
+
+styletron-react@^2.5.7:
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/styletron-react/-/styletron-react-2.5.7.tgz#46b90864c51bc8b9a852b0b20b1674125d5d7d48"
+  dependencies:
+    "@types/react" "*"
+    prop-types "^15.5.8"
+    styletron-client "^2.5.7"
+    styletron-server "^2.5.7"
+    styletron-utils "^2.5.4"
+
+styletron-server@^2.5.7:
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/styletron-server/-/styletron-server-2.5.7.tgz#f3d0e86e1b8540cde10f25bfa08c40dc0df3851f"
+  dependencies:
+    styletron-core "^2.5.7"
+
+styletron-utils@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/styletron-utils/-/styletron-utils-2.5.4.tgz#f08cca7d58ee0338ce85e408cb32900e65620240"
+  dependencies:
+    inline-style-prefixer "^2.0.1"
 
 supports-color@^2.0.0:
   version "2.0.0"
