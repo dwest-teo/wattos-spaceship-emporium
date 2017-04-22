@@ -29,6 +29,7 @@
     }
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "next": "^2.1.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
@@ -54,6 +55,7 @@
     "extends": "xo-react",
     "space": true,
     "rules": {
+      "import/no-unassigned-import": 0,
       "object-curly-spacing": [
         "error",
         "always"
