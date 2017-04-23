@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '../routes';
 import { Flex, Text } from './base';
 
 const Header = () => (
@@ -9,13 +10,15 @@ const Header = () => (
     backgroundColor="gray8"
     color="gray1"
   >
-    <Text
-      bold
-      is="span"
-      fontSize={2}
-    >
-      Wattos Space Emporium
-    </Text>
+    <Link route="index">
+      <Text
+        bold
+        is="span"
+        fontSize={2}
+      >
+        Wattos Space Emporium
+      </Text>
+    </Link>
   </Flex>
 );
 

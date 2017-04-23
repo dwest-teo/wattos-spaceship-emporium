@@ -3,7 +3,7 @@ const next = require('next');
 const routes = require('./routes');
 const isDev = require('./lib/is-dev');
 
-const app = next({ isDev });
+const app = next({ dev: isDev });
 const handler = routes.getRequestHandler(app);
 
 app.prepare().then(() => {

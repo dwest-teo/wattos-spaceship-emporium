@@ -5,7 +5,6 @@ import withRedux from 'next-redux-wrapper';
 import toSlug from '../lib/to-slug';
 import App from '../components/app';
 import { Text } from '../components/base';
-// import isClient from '../lib/is-client';
 import initStore from '../lib/store';
 import { setProductFeed, setActiveProduct } from '../actions/product';
 
@@ -26,11 +25,25 @@ const Product = props => (
   </App>
 );
 
-Product.getInitialProps = async ({ store, isServer, query }) => {
-  const res = await fetch('http://demo7475333.mockable.io/spaceships');
-  const json = await res.json();
-  store.dispatch(setProductFeed(json.products));
-  store.dispatch(setActiveProduct(json.products.find(p => toSlug(p.name) === query.slug)));
+Product.getInitialProps = async ({ store, isServer, query, res }) => {
+  let products;
+
+  if (isServer) {
+    const res = await fetch('http://demo7475333.mockable.io/spaceships');
+    const json = await res.json();
+    products = json.products;
+    store.dispatch(setProductFeed(products));
+  } else {
+    products = store.getState().Product.feed;
+  }
+
+  const activeProduct = products.find(p => toSlug(p.name) === query.slug);
+
+  if (!activeProduct && res) {
+    res.statusCode = 404;
+  }
+
+  store.dispatch(setActiveProduct(activeProduct));
 
   return { isServer };
 };

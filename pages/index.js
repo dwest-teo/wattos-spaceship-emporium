@@ -14,9 +14,11 @@ const Home = props => (
 );
 
 Home.getInitialProps = async ({ store, isServer }) => {
-  const res = await fetch('http://demo7475333.mockable.io/spaceships');
-  const json = await res.json();
-  store.dispatch(setProductFeed(json.products));
+  if (isServer) {
+    const res = await fetch('http://demo7475333.mockable.io/spaceships');
+    const json = await res.json();
+    store.dispatch(setProductFeed(json.products));
+  }
 
   return { isServer };
 };

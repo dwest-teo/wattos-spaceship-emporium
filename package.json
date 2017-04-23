@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/dwest-teo/wattos-spaceship-emporium#readme",
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "now": {
     "alias": "watto.donnywest.com",
