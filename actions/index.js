@@ -1,5 +1,5 @@
-import * as InventoryActions from './inventory';
+import * as ProductActions from './product';
 
 export {
-  InventoryActions,
+  ProductActions, // eslint-disable-line import/prefer-default-export
 };

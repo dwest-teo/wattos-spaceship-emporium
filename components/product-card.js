@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import toSlug from '../lib/to-slug';
+import { Link } from '../routes';
 import { Flex, Text, Image } from './base';
 
 const productCardCss = { height: 250 };
@@ -17,7 +19,9 @@ const ProductCard = ({ name, price, imgUrl }) => (
     width={[ 1, 1 / 2, 1 / 3, 1 / 4 ]}
     css={productCardCss}
   >
-    <Image src={imgUrl} />
+    <Link route="product" params={{ slug: toSlug(name) }}>
+      <Image src={imgUrl} />
+    </Link>
     <Text
       bold
       fontSize={4}
