@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
 import toSlug from '../lib/to-slug';
 import App from '../components/app';
-import { Text } from '../components/base';
+import { Text, Box } from '../components/base';
 import fetchProducts from '../lib/fetch-products';
 import initStore from '../lib/store';
 import { setProductFeed, setActiveProduct } from '../actions/product';
@@ -12,16 +12,22 @@ const specsArr = specs => Object.entries(specs).map(s => ({ label: s[0], value: 
 
 const Product = props => (
   <App>
+    <Text bold>Name</Text>
     <Text>{props.activeProduct.name}</Text>
+    <Text bold>Manufacturer</Text>
     <Text>{props.activeProduct.manufacturer}</Text>
+    <Text bold>Class</Text>
     <Text>{props.activeProduct.class}</Text>
+    <Text bold>Price</Text>
     <Text>{props.activeProduct.price}</Text>
-    {specsArr(props.activeProduct.techspecs).map((spec, i) => (
-      <div key={i}>
-        <Text bold>{spec.label}</Text>
-        <Text>{spec.value}</Text>
-      </div>
-    ))}
+    <Box mt2 pt2 borderTop>
+      {specsArr(props.activeProduct.techspecs).map((spec, i) => (
+        <Box key={i}>
+          <Text bold gray6>{spec.label}</Text>
+          <Text>{spec.value}</Text>
+        </Box>
+      ))}
+    </Box>
   </App>
 );
 
