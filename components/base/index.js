@@ -5,6 +5,9 @@ export {
   cxs,
 } from 'axs';
 
+export { default as globalStyles } from './global-styles';
+export { default as resetStyles } from './reset-styles';
+
+export { default as Container } from './container';
 export { default as Flex } from './flex';
-export { default as RootContainer } from './root-container';
-export { default as OuterContainer } from './outer-container';
+export { default as Image } from './image';

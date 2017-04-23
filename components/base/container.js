@@ -1,15 +1,16 @@
 import React from 'react';
 import { Box } from 'axs';
 
-const RootContainer = (props) => {
+const Container = (props) => {
   return (
     <Box
+      p2
       width={1}
       {...props}
     />
   );
 };
 
-RootContainer.displayName = 'RootContainer';
+Container.displayName = 'Container';
 
-export default RootContainer;
+export default Container;

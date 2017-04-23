@@ -1,13 +1,13 @@
 import React from 'react';
-import { Flex, Text } from '../base';
+import { Flex, Text } from './base';
 
 const Header = () => (
   <Flex
+    p2
     justifyContent="flex-start"
     alignItems="center"
     backgroundColor="gray8"
     color="gray1"
-    p={2}
   >
     <Text
       bold

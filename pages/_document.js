@@ -1,7 +1,6 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { cxs } from 'axs';
-import globalStyles from '../lib/global-styles';
+import { cxs, globalStyles } from '../components/base';
 
 class CustomDocument extends Document {
   static getInitialProps({ renderPage }) {

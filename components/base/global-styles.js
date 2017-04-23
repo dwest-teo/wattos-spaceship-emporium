@@ -19,11 +19,6 @@ const globalStyles = `
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  img {
-    max-width: 100%;
-    border-style: none;
-  }
 `;
 
 export default globalStyles;
