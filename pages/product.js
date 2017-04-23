@@ -1,10 +1,10 @@
-import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
 import toSlug from '../lib/to-slug';
 import App from '../components/app';
 import { Text } from '../components/base';
+import fetchProducts from '../lib/fetch-products';
 import initStore from '../lib/store';
 import { setProductFeed, setActiveProduct } from '../actions/product';
 
@@ -29,9 +29,7 @@ Product.getInitialProps = async ({ store, isServer, query, res }) => {
   let products;
 
   if (isServer) {
-    const res = await fetch('http://demo7475333.mockable.io/spaceships');
-    const json = await res.json();
-    products = json.products;
+    products = await fetchProducts();
     store.dispatch(setProductFeed(products));
   } else {
     products = store.getState().Product.feed;

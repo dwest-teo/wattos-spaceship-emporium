@@ -1,9 +1,9 @@
-import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
 import App from '../components/app';
 import ProductGrid from '../components/product-grid';
+import fetchProducts from '../lib/fetch-products';
 import initStore from '../lib/store';
 import { setProductFeed } from '../actions/product';
 
@@ -15,9 +15,8 @@ const Home = props => (
 
 Home.getInitialProps = async ({ store, isServer }) => {
   if (isServer) {
-    const res = await fetch('http://demo7475333.mockable.io/spaceships');
-    const json = await res.json();
-    store.dispatch(setProductFeed(json.products));
+    const products = await fetchProducts();
+    store.dispatch(setProductFeed(products));
   }
 
   return { isServer };
