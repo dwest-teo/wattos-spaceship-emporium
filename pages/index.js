@@ -3,13 +3,38 @@ import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
 import App from '../components/app';
 import ProductGrid from '../components/product-grid';
+import { Container, Flex, Text } from '../components/base';
 import fetchProducts from '../lib/fetch-products';
 import initStore from '../lib/store';
 import { setProductFeed } from '../actions/product';
 
 const Home = props => (
   <App>
-    <ProductGrid products={props.products} />
+    <Container p0>
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        css={{
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+          backgroundImage: 'url("/static/images/hero.jpg")',
+          height: 250,
+          minHeight: 0,
+        }}
+      >
+        <Text
+          gray2
+          mb4
+          is="h1"
+          fontSize={1}
+        >
+          Awesome Verbiage
+        </Text>
+      </Flex>
+      <Container>
+        <ProductGrid products={props.products} />
+      </Container>
+    </Container>
   </App>
 );
 

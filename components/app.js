@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { Container } from './base';
-import Header from './header';
+import { Flex } from './base';
+import Sidebar from './sidebar';
 
 const App = ({ children, title = 'Watto\'s Spaceship Emporium' }) => (
-  <Container p0>
+  <Flex
+    flexWrap="nowrap"
+    css={{ minHeight: '100vh' }}
+  >
     <Head>
       <title>{ title }</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <Header />
-    <Container>
-      {children}
-    </Container>
-  </Container>
+    <Sidebar />
+    {children}
+  </Flex>
 );
 
 App.propTypes = {
