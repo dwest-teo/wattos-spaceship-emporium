@@ -22,7 +22,7 @@ const Home = props => (
       }}
     >
       <Text
-        gray2
+        black2
         mb4
         is="h1"
         fontSize={1}

@@ -6,6 +6,7 @@ import Sidebar from './sidebar';
 
 const App = ({ children, title = 'Watto\'s Spaceship Emporium' }) => (
   <Flex
+    flexDirection="row"
     flexWrap="nowrap"
     css={{ minHeight: '100vh' }}
   >
@@ -15,7 +16,7 @@ const App = ({ children, title = 'Watto\'s Spaceship Emporium' }) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <Sidebar />
-    <Container p0>
+    <Container p0 width={1} css={{ flex: '1 1 0' }}>
       {children}
     </Container>
   </Flex>

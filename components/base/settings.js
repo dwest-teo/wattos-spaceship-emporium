@@ -1,42 +1,4 @@
-import palx from 'palx';
 import { config } from './index';
-
-const toArr = obj => Object.keys(obj).map(key => ({ key, value: obj[key] }));
-
-const flatten = (a = [], b) => {
-  if (Array.isArray(b)) {
-    return [ ...a, ...b ].reduce(flatten, []);
-  }
-
-  return [ ...a, b ];
-};
-
-const toObj = (a = {}, b) => {
-  a[b.key] = b.value;
-
-  return a;
-};
-
-const mapColors = ({ key, value }) => {
-  if (Array.isArray(value)) {
-    const scale = value.map((val, i) => ({
-      key: String(key) + i,
-      value: val,
-    }));
-
-    return [
-      { key, value: scale[5].value },
-      ...scale,
-    ];
-  }
-
-  return { key, value };
-};
-
-const colorObj = colors => toArr(colors).map(mapColors).reduce(flatten, []).reduce(toObj, {});
-
-const blue = '#4D7FE2';
-const palette = colorObj(palx(blue));
 
 const settings = () => {
   config.set({
@@ -51,9 +13,32 @@ const settings = () => {
     typeScale: [
       72, 48, 36, 24, 18, 16, 12,
     ],
-    colors: palette,
     radius: 3,
     bold: 700,
+    colors: {
+      white: '#fff',
+      red: '#FF5C5C',
+      black: '#0F0F0F',
+      black1: '#1B1B1B',
+      black2: '#282828',
+      black3: '#353535',
+      gray: '#6F6F6F',
+      gray1: '#9F9F9F',
+      gray2: '#CFCFCF',
+      gray3: '#E7E7E7',
+      blue: '#4D7FE2',
+      blue1: '#638FE6',
+      blue2: '#799FE9',
+      blue3: '#8FAEED',
+      navy: '#212A49',
+      navy1: '#29345B',
+      navy2: '#313E6C',
+      navy3: '#39487E',
+      sky: '#A9C7EC',
+      sky1: '#BED5F1',
+      sky2: '#D3E2F5',
+      sky3: '#E8F0Fa',
+    },
   });
 };
 
