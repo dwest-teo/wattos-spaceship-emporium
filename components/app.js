@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { Flex } from './base';
+import { Container, Flex } from './base';
 import Sidebar from './sidebar';
 
 const App = ({ children, title = 'Watto\'s Spaceship Emporium' }) => (
@@ -15,7 +15,9 @@ const App = ({ children, title = 'Watto\'s Spaceship Emporium' }) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <Sidebar />
-    {children}
+    <Container p0>
+      {children}
+    </Container>
   </Flex>
 );
 

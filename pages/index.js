@@ -10,30 +10,28 @@ import { setProductFeed } from '../actions/product';
 
 const Home = props => (
   <App>
-    <Container p0>
-      <Flex
-        justifyContent="center"
-        alignItems="center"
-        css={{
-          backgroundPosition: 'center center',
-          backgroundSize: 'cover',
-          backgroundImage: 'url("/static/images/hero.jpg")',
-          height: 250,
-          minHeight: 0,
-        }}
+    <Flex
+      justifyContent="center"
+      alignItems="center"
+      css={{
+        backgroundPosition: 'center center',
+        backgroundSize: 'cover',
+        backgroundImage: 'url("/static/images/hero.jpg")',
+        height: 250,
+        minHeight: 0,
+      }}
+    >
+      <Text
+        gray2
+        mb4
+        is="h1"
+        fontSize={1}
       >
-        <Text
-          gray2
-          mb4
-          is="h1"
-          fontSize={1}
-        >
-          Awesome Verbiage
-        </Text>
-      </Flex>
-      <Container>
-        <ProductGrid products={props.products} />
-      </Container>
+        Awesome Verbiage
+      </Text>
+    </Flex>
+    <Container>
+      <ProductGrid products={props.products} />
     </Container>
   </App>
 );
