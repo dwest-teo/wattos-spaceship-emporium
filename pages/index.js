@@ -17,8 +17,8 @@ Home.getInitialProps = async ({ store, isServer }) => {
   const res = await fetch('http://demo7475333.mockable.io/spaceships');
   const json = await res.json();
   store.dispatch(getInventoryFeed(json.products));
+
   return { isServer };
-  // return { products: json.products };
 };
 
 Home.propTypes = {

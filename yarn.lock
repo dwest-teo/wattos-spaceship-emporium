@@ -3045,6 +3045,12 @@ next-redux-wrapper@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/next-redux-wrapper/-/next-redux-wrapper-1.1.1.tgz#366aaa028f3041829671e62275f94f832c80359d"
 
+next-routes@^1.0.24:
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/next-routes/-/next-routes-1.0.24.tgz#ed4cacc1898a8017796f06016fe1aa12d02d3dba"
+  dependencies:
+    path-to-regexp "^1.7.0"
+
 next@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/next/-/next-2.1.1.tgz#d23f18e3cdda2ce110bd2a449ad013e855e59f83"
@@ -3398,7 +3404,7 @@ path-parse@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
 
-path-to-regexp@^1.0.0:
+path-to-regexp@^1.0.0, path-to-regexp@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
   dependencies:
