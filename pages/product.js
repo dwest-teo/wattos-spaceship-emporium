@@ -7,6 +7,7 @@ import { Container, Text, Box } from '../components/base';
 import fetchProducts from '../lib/fetch-products';
 import initStore from '../lib/store';
 import { setProductFeed, setActiveProduct } from '../actions/product';
+import { openSidebar } from '../actions/sidebar';
 
 const specsArr = specs => Object.entries(specs).map(s => ({ label: s[0], value: s[1] }));
 
@@ -64,10 +65,11 @@ Product.propTypes = {
   }),
   isLarge: PropTypes.bool,
   isSidebarOpen: PropTypes.bool,
+  openSidebar: PropTypes.func,
 };
 
 export default withRedux(initStore, state => ({
   activeProduct: state.Product.active,
   isLarge: state.browser.greaterThan.medium,
   isSidebarOpen: state.Sidebar.open,
-}))(Product);
+}), { openSidebar })(Product);
