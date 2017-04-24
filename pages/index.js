@@ -23,7 +23,7 @@ const Home = ({ products, ...props }) => (
       }}
     >
       <Text
-        black2
+        gray2
         mb4
         is="h1"
         fontSize={1}
@@ -41,6 +41,8 @@ Home.getInitialProps = async ({ store, isServer }) => {
   if (isServer) {
     const products = await fetchProducts();
     store.dispatch(setProductFeed(products));
+  } else {
+    store.dispatch(openSidebar(false));
   }
 
   return { isServer };

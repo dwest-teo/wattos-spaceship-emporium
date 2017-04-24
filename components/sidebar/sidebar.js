@@ -47,6 +47,9 @@ const Sidebar = ({ docked, open, onDismiss, ...props }) => {
               Wattos Space Emporium
             </Text>
           </Link>
+          <Link route="product" params={{ slug: 't-65-x-wing-starfighter' }}>
+            T-65 X-wing Starfighter
+          </Link>
         </Box>
       </Flex>
     </Box>

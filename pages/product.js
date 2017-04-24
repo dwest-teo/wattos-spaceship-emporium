@@ -42,6 +42,7 @@ Product.getInitialProps = async ({ store, isServer, query, res }) => {
     store.dispatch(setProductFeed(products));
   } else {
     products = store.getState().Product.feed;
+    store.dispatch(openSidebar(false));
   }
 
   const activeProduct = products.find(p => toSlug(p.name) === query.slug);
@@ -51,7 +52,6 @@ Product.getInitialProps = async ({ store, isServer, query, res }) => {
   }
 
   store.dispatch(setActiveProduct(activeProduct));
-
   return { isServer };
 };
 
