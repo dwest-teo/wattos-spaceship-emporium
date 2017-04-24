@@ -22,7 +22,7 @@ const Sidebar = ({ docked, open, onDismiss, ...props }) => {
       zIndex: 30,
       height: '100vh',
       transform: docked || open ? null : 'translateX(-100%)',
-      transition: 'transform .2s ease-in-out',
+      transition: 'transform .3s cubic-bezier(0.645,  0.045, 0.355, 1.000)',
       overflowX: 'hidden',
       overflowY: 'auto',
     },
