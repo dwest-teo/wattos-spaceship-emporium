@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { Burger } from 'reline';
 import { Container } from './base';
 import Sidebar from './sidebar';
+import MobileHeader from './mobile-header';
 
 const App = (props) => {
   const { children, isLarge, isSidebarOpen, openSidebar, title } = props;
@@ -20,15 +20,9 @@ const App = (props) => {
         open={isSidebarOpen}
         onDismiss={() => openSidebar(false)}
       />
-      <Container p0 width={null} css={{ marginLeft: isLarge ? 300 : 0, position: 'relative' }}>
+      <Container p0 width={null} css={{ marginLeft: isLarge ? 300 : 0 }}>
         {!isLarge && (
-          <Burger
-            stroke="#9F9F9F"
-            strokeWidth={2}
-            size={24}
-            style={{ position: 'absolute', top: 4, left: 4 }}
-            onClick={() => openSidebar(true)}
-          />
+          <MobileHeader openSidebar={openSidebar} />
         )}
         {children}
       </Container>

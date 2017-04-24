@@ -13,6 +13,7 @@ const Sidebar = ({ docked, open, onDismiss, ...props }) => {
       left: 0,
       zIndex: 20,
       display: open ? null : 'none',
+      backgroundColor: 'rgba(0, 0, 0, 0.65)',
     },
     bar: {
       position: 'fixed',
