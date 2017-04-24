@@ -11,7 +11,7 @@ import { setProductFeed, setActiveProduct } from '../actions/product';
 const specsArr = specs => Object.entries(specs).map(s => ({ label: s[0], value: s[1] }));
 
 const Product = props => (
-  <App>
+  <App isLarge={props.isLarge}>
     <Container>
       <Text bold>Name</Text>
       <Text>{props.activeProduct.name}</Text>
@@ -24,7 +24,7 @@ const Product = props => (
       <Box mt2 pt2 borderTop>
         {specsArr(props.activeProduct.techspecs).map((spec, i) => (
           <Box key={i}>
-            <Text bold gray6>{spec.label}</Text>
+            <Text bold gray>{spec.label}</Text>
             <Text>{spec.value}</Text>
           </Box>
         ))}
@@ -62,8 +62,10 @@ Product.propTypes = {
     price: PropTypes.string,
     techspecs: PropTypes.object,
   }),
+  isLarge: PropTypes.bool,
 };
 
 export default withRedux(initStore, state => ({
   activeProduct: state.Product.active,
+  isLarge: state.browser.greaterThan.medium,
 }))(Product);

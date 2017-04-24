@@ -9,7 +9,7 @@ import initStore from '../lib/store';
 import { setProductFeed } from '../actions/product';
 
 const Home = props => (
-  <App>
+  <App isLarge={props.isLarge}>
     <Flex
       justifyContent="center"
       alignItems="center"
@@ -47,8 +47,10 @@ Home.getInitialProps = async ({ store, isServer }) => {
 
 Home.propTypes = {
   products: PropTypes.array,
+  isLarge: PropTypes.bool,
 };
 
 export default withRedux(initStore, state => ({
   products: state.Product.feed,
+  isLarge: state.browser.greaterThan.medium,
 }))(Home);

@@ -4,7 +4,7 @@ import toSlug from '../lib/to-slug';
 import { Link } from '../routes';
 import { Flex, Text, Image } from './base';
 
-const productCardCss = { height: 250 };
+const productCardCss = { height: 280, flexBasis: 220 };
 
 const ProductCard = ({ name, price, imgUrl }) => (
   <Flex
@@ -12,11 +12,11 @@ const ProductCard = ({ name, price, imgUrl }) => (
     p1
     rounded
     border
-    borderColor="gray3"
+    borderGray2
+    flexAuto
     flexDirection="column"
     justifyContent="space-between"
     alignItems="center"
-    width={[ 1, 1 / 2, 1 / 3, 1 / 4 ]}
     css={productCardCss}
   >
     <Link route="product" params={{ slug: toSlug(name) }}>
@@ -24,13 +24,14 @@ const ProductCard = ({ name, price, imgUrl }) => (
     </Link>
     <Text
       bold
+      black3
       fontSize={4}
     >
       {name}
     </Text>
     <Text
+      gray
       fontSize={5}
-      color="gray6"
     >
       {price}
     </Text>

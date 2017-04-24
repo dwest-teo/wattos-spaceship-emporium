@@ -39,8 +39,10 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
+    "react-sidebar": "^2.3.2",
     "redux": "^3.6.0",
     "redux-actions": "^2.0.2",
+    "redux-responsive": "^4.2.1",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
@@ -100,7 +102,7 @@
       ],
       "react/forbid-component-props": 0,
       "react/require-default-props": 0,
-      "react/jsx-handler-names": 1
+      "react/jsx-handler-names": 0
     }
   }
 }

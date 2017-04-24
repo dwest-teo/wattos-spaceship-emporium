@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from '../../routes';
-import { Flex, Text, getBreakpoint } from '../base';
+import { Flex, Text } from '../base';
+// import { Flex, Text, getBreakpoint } from '../base';
 
-const Sidebar = () => (
+const Sidebar = ({ isLarge }) => (
   <Flex
     blue
     bgBlack
@@ -13,12 +15,15 @@ const Sidebar = () => (
     alignItems="center"
     width={[ 280, 320, 320, 320 ]}
     css={{
-      maxWidth: 280,
-      display: 'none',
-      [getBreakpoint(1)]: {
-        maxWidth: '320px !important',
-        display: 'flex !important',
-      },
+      maxWidth: isLarge ? 320 : 280,
+      position: 'fixed',
+      height: '100vh',
+      top: 0,
+      left: isLarge ? 0 : -280,
+      // [getBreakpoint(2)]: {
+      //   maxWidth: 320,
+      //   left: 0,
+      // },
     }}
   >
     <Link route="index">
@@ -32,5 +37,9 @@ const Sidebar = () => (
     </Link>
   </Flex>
 );
+
+Sidebar.propTypes = {
+  isLarge: PropTypes.bool,
+};
 
 export default Sidebar;
