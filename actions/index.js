@@ -1,5 +1,7 @@
 import * as ProductActions from './product';
+import * as SidebarActions from './sidebar';
 
 export {
-  ProductActions, // eslint-disable-line import/prefer-default-export
+  ProductActions,
+  SidebarActions,
 };

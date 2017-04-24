@@ -7,9 +7,10 @@ import { Container, Flex, Text } from '../components/base';
 import fetchProducts from '../lib/fetch-products';
 import initStore from '../lib/store';
 import { setProductFeed } from '../actions/product';
+import { openSidebar } from '../actions/sidebar';
 
-const Home = props => (
-  <App isLarge={props.isLarge}>
+const Home = ({ products, ...props }) => (
+  <App {...props}>
     <Flex
       justifyContent="center"
       alignItems="center"
@@ -31,7 +32,7 @@ const Home = props => (
       </Text>
     </Flex>
     <Container>
-      <ProductGrid products={props.products} />
+      <ProductGrid products={products} />
     </Container>
   </App>
 );
@@ -48,9 +49,12 @@ Home.getInitialProps = async ({ store, isServer }) => {
 Home.propTypes = {
   products: PropTypes.array,
   isLarge: PropTypes.bool,
+  isSidebarOpen: PropTypes.bool,
+  openSidebar: PropTypes.func,
 };
 
 export default withRedux(initStore, state => ({
   products: state.Product.feed,
   isLarge: state.browser.greaterThan.medium,
-}))(Home);
+  isSidebarOpen: state.Sidebar.open,
+}), { openSidebar })(Home);

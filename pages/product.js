@@ -10,19 +10,19 @@ import { setProductFeed, setActiveProduct } from '../actions/product';
 
 const specsArr = specs => Object.entries(specs).map(s => ({ label: s[0], value: s[1] }));
 
-const Product = props => (
-  <App isLarge={props.isLarge}>
+const Product = ({ activeProduct, ...props }) => (
+  <App {...props}>
     <Container>
       <Text bold>Name</Text>
-      <Text>{props.activeProduct.name}</Text>
+      <Text>{activeProduct.name}</Text>
       <Text bold>Manufacturer</Text>
-      <Text>{props.activeProduct.manufacturer}</Text>
+      <Text>{activeProduct.manufacturer}</Text>
       <Text bold>Class</Text>
-      <Text>{props.activeProduct.class}</Text>
+      <Text>{activeProduct.class}</Text>
       <Text bold>Price</Text>
-      <Text>{props.activeProduct.price}</Text>
+      <Text>{activeProduct.price}</Text>
       <Box mt2 pt2 borderTop>
-        {specsArr(props.activeProduct.techspecs).map((spec, i) => (
+        {specsArr(activeProduct.techspecs).map((spec, i) => (
           <Box key={i}>
             <Text bold gray>{spec.label}</Text>
             <Text>{spec.value}</Text>
@@ -63,9 +63,11 @@ Product.propTypes = {
     techspecs: PropTypes.object,
   }),
   isLarge: PropTypes.bool,
+  isSidebarOpen: PropTypes.bool,
 };
 
 export default withRedux(initStore, state => ({
   activeProduct: state.Product.active,
   isLarge: state.browser.greaterThan.medium,
+  isSidebarOpen: state.Sidebar.open,
 }))(Product);

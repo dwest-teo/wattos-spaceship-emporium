@@ -1,45 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '../../routes';
-import { Flex, Text } from '../base';
-// import { Flex, Text, getBreakpoint } from '../base';
+import { Box, Flex, Text } from '../base';
 
-const Sidebar = ({ isLarge }) => (
-  <Flex
-    blue
-    bgBlack
-    p2
-    flexAuto
-    flexDirection="column"
-    justifyContent="flex-start"
-    alignItems="center"
-    width={[ 280, 320, 320, 320 ]}
-    css={{
-      maxWidth: isLarge ? 320 : 280,
+const Sidebar = ({ docked, open, onDismiss, ...props }) => {
+  const styles = {
+    dismiss: {
       position: 'fixed',
-      height: '100vh',
       top: 0,
-      left: isLarge ? 0 : -280,
-      // [getBreakpoint(2)]: {
-      //   maxWidth: 320,
-      //   left: 0,
-      // },
-    }}
-  >
-    <Link route="index">
-      <Text
-        bold
-        is="span"
-        fontSize={3}
+      right: 0,
+      bottom: 0,
+      left: 0,
+      zIndex: 20,
+      display: open ? null : 'none',
+    },
+    bar: {
+      position: 'fixed',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      zIndex: 30,
+      height: '100vh',
+      transform: docked || open ? null : 'translateX(-100%)',
+      transition: 'transform .2s ease-in-out',
+      overflowX: 'hidden',
+      overflowY: 'auto',
+    },
+  };
+
+  return (
+    <Box>
+      <Box css={styles.dismiss} onClick={onDismiss} />
+      <Flex
+        {...props}
+        bgBlack
+        flexDirection="column"
+        justifyContent="flex-start"
+        alignItems="center"
+        width={300}
+        css={styles.bar}
       >
-        Wattos Space Emporium
-      </Text>
-    </Link>
-  </Flex>
-);
+        <Box p2>
+          <Link route="index">
+            <Text bold blue fontSize={3}>
+              Wattos Space Emporium
+            </Text>
+          </Link>
+        </Box>
+      </Flex>
+    </Box>
+  );
+};
 
 Sidebar.propTypes = {
-  isLarge: PropTypes.bool,
+  docked: PropTypes.bool,
+  open: PropTypes.bool,
+  onDismiss: PropTypes.func,
+};
+
+Sidebar.defaultProps = {
+  docked: false,
+  open: false,
+  onDismiss: () => {},
 };
 
 export default Sidebar;
