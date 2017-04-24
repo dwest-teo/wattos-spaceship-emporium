@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import { Burger } from 'reline';
 import { Container } from './base';
 import Sidebar from './sidebar';
 
@@ -14,15 +15,21 @@ const App = (props) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {!isLarge && (
-        <button onClick={() => openSidebar(true)}>Menu</button>
-      )}
       <Sidebar
         docked={isLarge}
         open={isSidebarOpen}
         onDismiss={() => openSidebar(false)}
       />
-      <Container p0 width={null} css={{ marginLeft: isLarge ? 300 : 0 }}>
+      <Container p0 width={null} css={{ marginLeft: isLarge ? 300 : 0, position: 'relative' }}>
+        {!isLarge && (
+          <Burger
+            stroke="#9F9F9F"
+            strokeWidth={2}
+            size={24}
+            style={{ position: 'absolute', top: 4, left: 4 }}
+            onClick={() => openSidebar(true)}
+          />
+        )}
         {children}
       </Container>
     </Container>
