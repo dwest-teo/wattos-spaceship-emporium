@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import toSlug from '../../lib/to-slug';
 import { Link } from '../../routes';
 import { Box, Flex, Text, config } from '../base';
 
 const { breakpoints } = config.get();
 
-const Sidebar = ({ open, onDismiss, ...props }) => {
+const Sidebar = ({ open, onDismiss, products, ...props }) => {
   const styles = {
     dismiss: {
       position: 'fixed',
@@ -52,9 +53,22 @@ const Sidebar = ({ open, onDismiss, ...props }) => {
               Wattos Space Emporium
             </Text>
           </Link>
-          <Link route="product" params={{ slug: 't-65-x-wing-starfighter' }}>
-            T-65 X-wing Starfighter
-          </Link>
+          <Flex
+            my2
+            flexDirection="column"
+            justifyContent="space-around"
+          >
+            {products.map((product, i) => (
+              <Box mb2 key={i}>
+                <Link
+                  route="product"
+                  params={{ slug: toSlug(product.name) }}
+                >
+                  <a>{product.name}</a>
+                </Link>
+              </Box>
+            ))}
+          </Flex>
         </Box>
       </Flex>
     </Box>
@@ -63,6 +77,7 @@ const Sidebar = ({ open, onDismiss, ...props }) => {
 
 Sidebar.propTypes = {
   open: PropTypes.bool,
+  products: PropTypes.array,
   onDismiss: PropTypes.func,
 };
 

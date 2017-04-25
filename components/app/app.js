@@ -6,7 +6,7 @@ import Sidebar from '../sidebar';
 import MobileHeader from '../mobile-header';
 
 const App = (props) => {
-  const { children, isLarge, isSidebarOpen, openSidebar, title } = props;
+  const { children, products, isLarge, isSidebarOpen, openSidebar, title } = props;
 
   return (
     <Container p0 css={{ minHeight: '100vh' }}>
@@ -17,6 +17,7 @@ const App = (props) => {
       </Head>
       <Sidebar
         open={isSidebarOpen || isLarge}
+        products={products}
         onDismiss={() => openSidebar(false)}
       />
       <Container
@@ -36,7 +37,9 @@ const App = (props) => {
 };
 
 App.propTypes = {
+  products: PropTypes.array,
   children: PropTypes.node,
+  products: PropTypes.array,
   isLarge: PropTypes.bool,
   isSidebarOpen: PropTypes.bool,
   title: PropTypes.string,

@@ -10,7 +10,7 @@ import { setProductFeed } from '../actions/product';
 import { openSidebar } from '../actions/sidebar';
 
 const Home = ({ products, ...props }) => (
-  <App {...props}>
+  <App products={products} {...props}>
     <Flex
       justifyContent="center"
       alignItems="center"
@@ -39,12 +39,16 @@ const Home = ({ products, ...props }) => (
 );
 
 Home.getInitialProps = async ({ store, isServer }) => {
-  if (isServer) {
-    const products = await fetchProducts();
-    store.dispatch(setProductFeed(products));
-  } else {
-    store.dispatch(openSidebar(false));
-  }
+  // if (isServer) {
+  //   const products = await fetchProducts();
+  //   store.dispatch(setProductFeed(products));
+  // } else {
+  //   store.dispatch(openSidebar(false));
+  // }
+
+  const products = await fetchProducts();
+  store.dispatch(setProductFeed(products));
+  store.dispatch(openSidebar(false));
 
   return { isServer };
 };

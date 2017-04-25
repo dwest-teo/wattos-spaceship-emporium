@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
 import toSlug from '../lib/to-slug';
 import App from '../components/app';
-import { Container, Text, Box } from '../components/base';
+import { Container, Text, Flex, Image, Box } from '../components/base';
 import fetchProducts from '../lib/fetch-products';
 import initStore from '../lib/store';
 import { setProductFeed, setActiveProduct } from '../actions/product';
@@ -14,14 +14,18 @@ const specsArr = specs => Object.entries(specs).map(s => ({ label: s[0], value: 
 const Product = ({ activeProduct, ...props }) => (
   <App {...props}>
     <Container>
-      <Text bold>Name</Text>
-      <Text>{activeProduct.name}</Text>
-      <Text bold>Manufacturer</Text>
-      <Text>{activeProduct.manufacturer}</Text>
-      <Text bold>Class</Text>
-      <Text>{activeProduct.class}</Text>
-      <Text bold>Price</Text>
-      <Text>{activeProduct.price}</Text>
+      <Flex
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Text black3 is="h1">{activeProduct.name}</Text>
+        <Box right>
+          <Text>{activeProduct.manufacturer}</Text>
+          <Text>{activeProduct.class}</Text>
+          <Text>{activeProduct.price}</Text>
+        </Box>
+      </Flex>
+      <Image width={1} src="https://www.stevensegallery.com/600/400" />
       <Box mt2 pt2 borderTop>
         {specsArr(activeProduct.techspecs).map((spec, i) => (
           <Box key={i}>
@@ -56,6 +60,7 @@ Product.getInitialProps = async ({ store, isServer, query, res }) => {
 };
 
 Product.propTypes = {
+  products: PropTypes.array,
   activeProduct: PropTypes.shape({
     name: PropTypes.string,
     manufacturer: PropTypes.string,
@@ -69,6 +74,7 @@ Product.propTypes = {
 };
 
 export default withRedux(initStore, state => ({
+  products: state.Product.feed,
   activeProduct: state.Product.active,
   isLarge: state.browser.greaterThan.medium,
   isSidebarOpen: state.Sidebar.open,

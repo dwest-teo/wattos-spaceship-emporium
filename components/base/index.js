@@ -9,9 +9,6 @@ export {
 
 settings();
 
-// style utils
-export { default as getBreakpoint } from './get-breakpoint';
-
 // style objects
 export { default as globalStyles } from './global-styles';
 export { default as resetStyles } from './reset-styles';

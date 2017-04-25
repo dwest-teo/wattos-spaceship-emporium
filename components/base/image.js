@@ -3,15 +3,13 @@ import { Box } from 'axs';
 
 const imageCss = { maxWidth: '100%', borderStyle: 'none' };
 
-const Image = (props) => {
-  return (
-    <Box
-      is="img"
-      {...props}
-      css={imageCss}
-    />
-  );
-};
+const Image = props => (
+  <Box
+    is="img"
+    {...props}
+    css={imageCss}
+  />
+);
 
 Image.displayName = 'Image';
 
