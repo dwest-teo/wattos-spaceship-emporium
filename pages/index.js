@@ -27,6 +27,7 @@ const Home = ({ products, ...props }) => (
         mb4
         is="h1"
         fontSize={1}
+        css={{ fontFamily: 'Concert One' }}
       >
         Awesome Verbiage
       </Text>
@@ -39,16 +40,12 @@ const Home = ({ products, ...props }) => (
 );
 
 Home.getInitialProps = async ({ store, isServer }) => {
-  // if (isServer) {
-  //   const products = await fetchProducts();
-  //   store.dispatch(setProductFeed(products));
-  // } else {
-  //   store.dispatch(openSidebar(false));
-  // }
-
-  const products = await fetchProducts();
-  store.dispatch(setProductFeed(products));
   store.dispatch(openSidebar(false));
+
+  const storeProducts = store.getState().Product.feed;
+  const products = storeProducts.length > 0 ? storeProducts : await fetchProducts();
+
+  store.dispatch(setProductFeed(products));
 
   return { isServer };
 };

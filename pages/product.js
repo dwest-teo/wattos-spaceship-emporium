@@ -30,7 +30,7 @@ const Product = ({ activeProduct, ...props }) => (
         {specsArr(activeProduct.techspecs).map((spec, i) => (
           <Box key={i}>
             <Text bold gray>{spec.label}</Text>
-            <Text>{spec.value}</Text>
+            <Text css={{ fontFamily: 'Space Mono' }}>{spec.value}</Text>
           </Box>
         ))}
       </Box>
@@ -39,15 +39,12 @@ const Product = ({ activeProduct, ...props }) => (
 );
 
 Product.getInitialProps = async ({ store, isServer, query, res }) => {
-  let products;
+  store.dispatch(openSidebar(false));
 
-  if (isServer) {
-    products = await fetchProducts();
-    store.dispatch(setProductFeed(products));
-  } else {
-    products = store.getState().Product.feed;
-    store.dispatch(openSidebar(false));
-  }
+  const storeProducts = store.getState().Product.feed;
+  const products = storeProducts.length > 0 ? storeProducts : await fetchProducts();
+
+  store.dispatch(setProductFeed(products));
 
   const activeProduct = products.find(p => toSlug(p.name) === query.slug);
 
@@ -56,6 +53,7 @@ Product.getInitialProps = async ({ store, isServer, query, res }) => {
   }
 
   store.dispatch(setActiveProduct(activeProduct));
+
   return { isServer };
 };
 

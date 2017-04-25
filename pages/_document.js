@@ -13,9 +13,10 @@ class CustomDocument extends Document {
     return (
       <html>
         <Head>
-          <title>Add a Title!!!</title>
+          <title>Watto</title>
           <style>{globalStyles}</style>
           <style dangerouslySetInnerHTML={{ __html: this.props.style }} />
+          <link href="https://fonts.googleapis.com/css?family=Concert+One|Space+Mono" rel="stylesheet" />
         </Head>
         <body>
           <Main />
