@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { Container } from './base';
-import Sidebar from './sidebar';
-import MobileHeader from './mobile-header';
+import { Container } from '../base';
+import Sidebar from '../sidebar';
+import MobileHeader from '../mobile-header';
 
 const App = (props) => {
   const { children, isLarge, isSidebarOpen, openSidebar, title } = props;
