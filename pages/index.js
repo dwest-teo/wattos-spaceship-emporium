@@ -18,7 +18,7 @@ const Home = ({ products, ...props }) => (
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
         backgroundImage: 'url("/static/images/hero.jpg")',
-        height: 250,
+        height: 300,
         minHeight: 0,
       }}
     >
@@ -31,7 +31,8 @@ const Home = ({ products, ...props }) => (
         Awesome Verbiage
       </Text>
     </Flex>
-    <Container>
+    <Container bgWhite>
+      <Text black4 my2 is="h2">Current Inventory:</Text>
       <ProductGrid products={products} />
     </Container>
   </App>
