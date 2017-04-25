@@ -16,11 +16,16 @@ const App = (props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Sidebar
-        docked={isLarge}
-        open={isSidebarOpen}
+        open={isSidebarOpen || isLarge}
         onDismiss={() => openSidebar(false)}
       />
-      <Container p0 width={null} css={{ marginLeft: isLarge ? 300 : 0 }}>
+      <Container
+        p0
+        width={null}
+        css={{
+          marginLeft: isLarge ? 300 : 0,
+        }}
+      >
         {!isLarge && (
           <MobileHeader openSidebar={openSidebar} />
         )}

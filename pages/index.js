@@ -32,7 +32,7 @@ const Home = ({ products, ...props }) => (
       </Text>
     </Flex>
     <Container bgWhite>
-      <Text black4 my2 is="h2">Current Inventory:</Text>
+      <Text black3 my2 is="h2">Current Inventory:</Text>
       <ProductGrid products={products} />
     </Container>
   </App>
