@@ -15,7 +15,7 @@ const ProductGrid = ({ products }) => (
         key={i}
         name={product.name}
         price={product.price || 'Priced too low to show!'}
-        imgUrl={product.name ? `/static/images/${toSlug(product.name)}/thumb.jpg` : 'https://www.stevensegallery.com/148/148'}
+        imgUrl={`/static/images/${toSlug(product.name)}/thumb.jpg`}
       />
     ))}
   </Flex>
