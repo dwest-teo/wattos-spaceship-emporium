@@ -32,6 +32,21 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
       overflowX: 'hidden',
       overflowY: 'auto',
     },
+    link: {
+      cursor: 'pointer',
+      textDecoration: 'none',
+      opacity: 0.7,
+      transition: 'opacity .2s ease-in',
+      ':hover': {
+        opacity: 1,
+      },
+      ':focus': {
+        opacity: 1,
+      },
+      ':active': {
+        opacity: 1,
+      },
+    },
   };
 
   return (
@@ -47,23 +62,31 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
         css={styles.bar}
       >
         <Box p2>
-          <Link route="index">
-            <Text bold blue fontSize={3}>
-              Wattos Space Emporium
-            </Text>
-          </Link>
+          <Box onClick={onDismiss}>
+            <Link route="index">
+              <Text bold blue fontSize={3}>
+                Wattos Space Emporium
+              </Text>
+            </Link>
+          </Box>
           <Flex
             my2
             flexDirection="column"
             justifyContent="space-around"
           >
             {products.map((product, i) => (
-              <Box mb2 key={i}>
+              <Box mb2 key={i} onClick={onDismiss}>
                 <Link
                   route="product"
                   params={{ slug: toSlug(product.name) }}
                 >
-                  <a>{product.name}</a>
+                  <Text
+                    white
+                    is="a"
+                    css={styles.link}
+                  >
+                    {product.name}
+                  </Text>
                 </Link>
               </Box>
             ))}

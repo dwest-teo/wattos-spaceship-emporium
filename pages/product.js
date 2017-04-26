@@ -26,7 +26,6 @@ class Product extends Component {
 
     const activeProd = products.find(p => toSlug(p.name) === query.slug);
     store.dispatch(setActiveProduct(activeProd));
-    store.dispatch(openSidebar(false));
 
     return { isServer };
   }
@@ -68,7 +67,6 @@ class Product extends Component {
 }
 
 Product.propTypes = {
-  query: PropTypes.object,
   activeProduct: PropTypes.shape({
     name: PropTypes.string,
     manufacturer: PropTypes.string,
@@ -84,4 +82,4 @@ export default withRedux(initStore, state => ({
   activeProduct: state.Product.active,
   isLarge: state.browser.greaterThan.medium,
   isSidebarOpen: state.Sidebar.open,
-}), { setActiveProduct })(Product);
+}), { setActiveProduct, openSidebar })(Product);
