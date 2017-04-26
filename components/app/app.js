@@ -23,9 +23,7 @@ const App = (props) => {
       <Container
         p0
         width={null}
-        css={{
-          marginLeft: isLarge ? 300 : 0,
-        }}
+        css={{ marginLeft: isLarge ? 300 : 0 }}
       >
         {!isLarge && (
           <MobileHeader openSidebar={openSidebar} />

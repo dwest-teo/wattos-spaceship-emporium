@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import toSlug from '../../lib/to-slug';
 import { Link } from '../../routes';
 import { Box, Flex, Text, config } from '../base';
+import Icon from '../icon';
 
 const { breakpoints } = config.get();
 
@@ -35,36 +36,47 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
     link: {
       cursor: 'pointer',
       textDecoration: 'none',
-      opacity: 0.7,
-      transition: 'opacity .2s ease-in',
+      opacity: 1,
+      transition: 'opacity .15s ease-in',
       ':hover': {
-        opacity: 1,
+        opacity: 0.5,
+        transition: 'opacity .15s ease-in',
       },
       ':focus': {
-        opacity: 1,
+        opacity: 0.5,
+        transition: 'opacity .15s ease-in',
       },
       ':active': {
-        opacity: 1,
+        opacity: 0.5,
+        transition: 'opacity .15s ease-out',
       },
     },
   };
 
   return (
     <Box>
-      <Box bgOverlay css={styles.dismiss} onClick={onDismiss} />
-      <Flex
+      <Box
+        bgOverlay
+        css={styles.dismiss}
+        onClick={onDismiss}
+      />
+      <Box
         {...props}
         bgDark
-        flexDirection="column"
-        justifyContent="flex-start"
-        alignItems="center"
         width={300}
         css={styles.bar}
       >
-        <Box p2>
-          <Box onClick={onDismiss}>
+        <Flex
+          p2
+          flexDirection="column"
+          justifyContent="flex-start"
+          alignItems="center"
+          width={1}
+          css={{ height: '100%' }}
+        >
+          <Box width={1} onClick={onDismiss}>
             <Link route="index">
-              <Text bold blue fontSize={3}>
+              <Text bold white fontSize={4} css={styles.link}>
                 Wattos Space Emporium
               </Text>
             </Link>
@@ -74,25 +86,48 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
             flexDirection="column"
             justifyContent="space-around"
           >
+            <Text my2 bold white caps fontSize={4} is="span">
+              Inventory
+            </Text>
             {products.map((product, i) => (
-              <Box mb2 key={i} onClick={onDismiss}>
+              <Box ml1 mb1 key={i} onClick={onDismiss}>
                 <Link
                   route="product"
                   params={{ slug: toSlug(product.name) }}
                 >
-                  <Text
-                    white
-                    is="a"
-                    css={styles.link}
-                  >
+                  <Text gray is="a" css={styles.link}>
                     {product.name}
                   </Text>
                 </Link>
               </Box>
             ))}
+            <Text left mt3 mb2 bold white caps fontSize={4} is="span">
+              About Us
+            </Text>
+            <Text my2 bold white caps fontSize={4} is="span">
+              Another Link
+            </Text>
           </Flex>
-        </Box>
-      </Flex>
+          <Box center gray width={1} css={{ marginTop: 'auto' }}>
+            <Text bold>Wattos Space Emporium</Text>
+            <Text>Mos Eisley, Tattooine</Text>
+            <Text>&copy; A Long Time Ago</Text>
+            <Flex
+              mt3
+              flexDirection="row"
+              flexWrap="no wrap"
+              justifyContent="space-around"
+              alignItems="center"
+            >
+              <Icon name="googleplus" />
+              <Icon name="twitter" />
+              <Icon name="linkedin" />
+              <Icon name="github" />
+              <Icon name="stackoverflow" />
+            </Flex>
+          </Box>
+        </Flex>
+      </Box>
     </Box>
   );
 };
