@@ -27,7 +27,7 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
       bottom: 0,
       left: 0,
       zIndex: 30,
-      height: '100vh',
+      // height: '100vh',
       transform: open ? null : 'translateX(-100%)',
       transition: 'transform .3s cubic-bezier(0.645,  0.045, 0.355, 1.000)',
       overflowX: 'hidden',
@@ -86,6 +86,7 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
           </Box>
           <Flex
             my2
+            width={1}
             flexDirection="column"
             justifyContent="space-around"
           >
