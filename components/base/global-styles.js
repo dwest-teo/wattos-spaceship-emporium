@@ -1,24 +1,30 @@
-const globalStyles = `
-  html {
-    box-sizing: border-box;
-    font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
-    line-height: 1.5;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-  }
+import cxs from 'cxs/monolithic';
 
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
+const attachGlobalStyles = () => {
+  cxs('html', {
+    boxSizing: 'border-box',
+    fontFamily: '-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif',
+    lineHeight: 1.5,
+    '-ms-text-size-adjust': '100%',
+    '-webkit-text-size-adjust': '100%',
+  });
 
-  body {
-    margin: 0;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-`;
+  cxs('*', {
+    boxSizing: 'inherit',
+    ':before': {
+      boxSizing: 'inherit',
+    },
+    ':after': {
+      boxSizing: 'inherit',
+    },
+  });
 
-export default globalStyles;
+  cxs('body', {
+    margin: 0,
+    textRendering: 'optimizeLegibility',
+    '-webkit-font-smoothing': 'antialiased',
+    '-moz-osx-font-smoothing': 'grayscale',
+  })
+}
+
+export default attachGlobalStyles;

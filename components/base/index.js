@@ -1,4 +1,4 @@
-import settings from './settings';
+import applySettings from './settings';
 
 export {
   Box,
@@ -7,10 +7,13 @@ export {
   cxs,
 } from 'axs';
 
-settings();
+// apply custom config values
+applySettings();
+
+// utility/fns
+export { default as attachGlobalStyles } from './global-styles';
 
 // style objects
-export { default as globalStyles } from './global-styles';
 export { default as resetStyles } from './reset-styles';
 
 // components
