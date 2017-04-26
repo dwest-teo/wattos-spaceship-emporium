@@ -5,6 +5,7 @@ import App from '../components/app';
 import ProductGrid from '../components/product-grid';
 import { Container, Box, Flex, Text } from '../components/base';
 import fetchProducts from '../lib/fetch-products';
+import decorateProducts from '../lib/decorate-products';
 import initStore from '../lib/store';
 import { setFeedSavedStatus, setProductFeed } from '../actions/product';
 import { openSidebar } from '../actions/sidebar';
@@ -15,7 +16,8 @@ class Home extends Component {
 
     if (!feedSaved) {
       const products = await fetchProducts();
-      store.dispatch(setProductFeed(products));
+      const decoratedProducts = await decorateProducts(products);
+      store.dispatch(setProductFeed(decoratedProducts));
       store.dispatch(setFeedSavedStatus(true));
     }
 

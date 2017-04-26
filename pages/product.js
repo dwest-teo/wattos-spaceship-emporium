@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
-import toSlug from '../lib/to-slug';
+import fetchProducts from '../lib/fetch-products';
+import decorateProducts from '../lib/decorate-products';
+import initStore from '../lib/store';
+import {
+  setFeedSavedStatus,
+  setProductFeed,
+  setActiveProduct,
+} from '../actions/product';
+import { openSidebar } from '../actions/sidebar';
 import App from '../components/app';
 import { Container, Text, Flex, Image, Box } from '../components/base';
-import fetchProducts from '../lib/fetch-products';
-import initStore from '../lib/store';
-import { setFeedSavedStatus, setProductFeed, setActiveProduct } from '../actions/product';
-import { openSidebar } from '../actions/sidebar';
-
-const specsArr = specs => Object.entries(specs).map(s => ({ label: s[0], value: s[1] }));
 
 class Product extends Component {
   static async getInitialProps({ store, isServer, query }) {
@@ -19,12 +21,13 @@ class Product extends Component {
     if (feedSaved) {
       products = store.getState().Product.feed;
     } else {
-      products = await fetchProducts();
+      const productFeed = await fetchProducts();
+      products = await decorateProducts(productFeed);
       store.dispatch(setProductFeed(products));
       store.dispatch(setFeedSavedStatus(true));
     }
 
-    const activeProd = products.find(p => toSlug(p.name) === query.slug);
+    const activeProd = products.find(p => p.slug === query.slug);
     store.dispatch(setActiveProduct(activeProd));
 
     return { isServer };
@@ -43,7 +46,7 @@ class Product extends Component {
           <Text is="h1">{activeProduct.name}</Text>
           <Image
             width={1}
-            src={`/static/images/${toSlug(activeProduct.name)}/0.jpg`}
+            src={`/static/images/${activeProduct.slug}/0.jpg`}
             alt={activeProduct.name}
           />
           <Flex
@@ -57,11 +60,18 @@ class Product extends Component {
               {activeProduct.price || 'Call for our sale price!'}
             </Text>
           </Flex>
-          <Box mt2 pt2 borderTop>
-            {specsArr(activeProduct.techspecs).map((spec, i) => (
-              <Box key={i}>
-                <Text bold gray>{spec.label}</Text>
-                <Text>{spec.value}</Text>
+          <Box my3>
+            <Text mb2 is="h3">
+              Specifications:
+            </Text>
+            {activeProduct.techspecs.map((spec, i) => (
+              <Box mb1 key={i} is="dl">
+                <Box bold is="dt" display="inline-block" fontSize={6}>
+                  {`${spec.label}: `}
+                </Box>
+                <Box ml1 gray is="dd" display="inline-block" fontSize={6}>
+                  {spec.value}
+                </Box>
               </Box>
             ))}
           </Box>
@@ -77,7 +87,8 @@ Product.propTypes = {
     manufacturer: PropTypes.string,
     class: PropTypes.string,
     price: PropTypes.string,
-    techspecs: PropTypes.object,
+    techspecs: PropTypes.array,
+    slug: PropTypes.string,
   }),
   setActiveProduct: PropTypes.func,
 };
