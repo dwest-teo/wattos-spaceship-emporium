@@ -23,10 +23,6 @@ class Product extends Component {
     return { product };
   }
 
-  componentWillUnmount() {
-    this.props.setActiveProduct(null);
-  }
-
   render() {
     const { product } = this.props;
 
@@ -87,12 +83,10 @@ Product.propTypes = {
     description: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.string),
   }),
-  setActiveProduct: PropTypes.func,
 };
 
 export default withRedux(initStore, state => ({
   products: state.Product.feed,
-  activeProduct: state.Product.active,
   isLarge: state.browser.greaterThan.medium,
   isSidebarOpen: state.Sidebar.open,
 }), { openSidebar })(Product);
