@@ -13,10 +13,11 @@ class CustomDocument extends Document {
     return (
       <html>
         <Head>
-          <title>Watto</title>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <link href="https://fonts.googleapis.com/css?family=Concert+One|Space+Mono" rel="stylesheet" />
           <style>{globalStyles}</style>
           <style dangerouslySetInnerHTML={{ __html: this.props.style }} />
-          <link href="https://fonts.googleapis.com/css?family=Concert+One|Space+Mono" rel="stylesheet" />
         </Head>
         <body>
           <Main />

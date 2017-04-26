@@ -39,7 +39,7 @@ class Product extends Component {
     const { activeProduct } = this.props;
 
     return (
-      <App {...this.props}>
+      <App title={activeProduct.name} {...this.props}>
         <Container>
           <Flex
             justifyContent="space-between"

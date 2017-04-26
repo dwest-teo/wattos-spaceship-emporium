@@ -5,15 +5,15 @@ import { Container } from '../base';
 import Sidebar from '../sidebar';
 import MobileHeader from '../mobile-header';
 
+const defTitle = 'Watto\'s Spaceship Emporium';
+
 const App = (props) => {
   const { children, products, isLarge, isSidebarOpen, openSidebar, title } = props;
 
   return (
     <Container p0 css={{ minHeight: '100vh' }}>
       <Head>
-        <title>{ title || 'Watto\'s Spaceship Emporium' }</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title>{title ? `${title} - ${defTitle}` : defTitle}</title>
       </Head>
       <Sidebar
         open={isSidebarOpen || isLarge}
@@ -39,7 +39,6 @@ const App = (props) => {
 App.propTypes = {
   products: PropTypes.array,
   children: PropTypes.node,
-  products: PropTypes.array,
   isLarge: PropTypes.bool,
   isSidebarOpen: PropTypes.bool,
   title: PropTypes.string,
