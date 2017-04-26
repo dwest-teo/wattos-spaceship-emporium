@@ -24,13 +24,12 @@ const ProductCard = ({ name, price, imgUrl }) => (
     </Link>
     <Text
       bold
-      black3
       fontSize={4}
     >
       {name}
     </Text>
     <Text
-      gray
+      gray9
       fontSize={5}
     >
       {price}

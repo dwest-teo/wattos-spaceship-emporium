@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
 import App from '../components/app';
@@ -6,55 +6,62 @@ import ProductGrid from '../components/product-grid';
 import { Container, Flex, Text } from '../components/base';
 import fetchProducts from '../lib/fetch-products';
 import initStore from '../lib/store';
-import { setProductFeed } from '../actions/product';
+import { setFeedSavedStatus, setProductFeed } from '../actions/product';
 import { openSidebar } from '../actions/sidebar';
 
-const Home = ({ products, ...props }) => (
-  <App products={products} {...props}>
-    <Flex
-      justifyContent="center"
-      alignItems="center"
-      css={{
-        backgroundPosition: 'center center',
-        backgroundSize: 'cover',
-        backgroundImage: 'url("/static/images/hero.jpg")',
-        height: 300,
-        minHeight: 0,
-      }}
-    >
-      <Text
-        gray2
-        mb4
-        is="h1"
-        fontSize={1}
-        css={{ fontFamily: 'Concert One' }}
-      >
-        Awesome Verbiage
-      </Text>
-    </Flex>
-    <Container bgWhite>
-      <Text black3 my2 is="h2">Current Inventory:</Text>
-      <ProductGrid products={products} />
-    </Container>
-  </App>
-);
+class Home extends Component {
+  static async getInitialProps({ store, isServer }) {
+    const feedSaved = store.getState().Product.feedSaved;
 
-Home.getInitialProps = async ({ store, isServer }) => {
-  store.dispatch(openSidebar(false));
+    if (!feedSaved) {
+      const products = await fetchProducts();
+      store.dispatch(setProductFeed(products));
+      store.dispatch(setFeedSavedStatus(true));
+    }
 
-  const storeProducts = store.getState().Product.feed;
-  const products = storeProducts.length > 0 ? storeProducts : await fetchProducts();
+    return { isServer };
+  }
 
-  store.dispatch(setProductFeed(products));
+  componentWillMount() {
+    // find a better way
+    if (!this.props.isLarge) {
+      this.props.openSidebar(false);
+    }
+  }
 
-  return { isServer };
-};
+  render() {
+    return (
+      <App {...this.props}>
+        <Flex
+          bgDark
+          justifyContent="center"
+          alignItems="center"
+          css={{ height: 300 }}
+        >
+          <Text
+            center
+            gray2
+            mb4
+            is="h1"
+            fontSize={1}
+            css={{ fontFamily: 'Concert One' }}
+          >
+            Awesome Verbiage
+          </Text>
+        </Flex>
+        <Container bgWhite>
+          <Text my2 is="h2">Current Inventory:</Text>
+          <ProductGrid products={this.props.products} />
+        </Container>
+      </App>
+    );
+  }
+}
 
 Home.propTypes = {
   products: PropTypes.array,
-  isLarge: PropTypes.bool,
-  isSidebarOpen: PropTypes.bool,
   openSidebar: PropTypes.func,
+  isLarge: PropTypes.bool,
 };
 
 export default withRedux(initStore, state => ({

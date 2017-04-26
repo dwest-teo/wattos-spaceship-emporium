@@ -16,7 +16,6 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
       left: 0,
       zIndex: 20,
       display: open ? null : 'none',
-      backgroundColor: 'rgba(0, 0, 0, 0.65)',
       [breakpoints[1]]: {
         display: 'none',
       },
@@ -37,10 +36,10 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
 
   return (
     <Box>
-      <Box css={styles.dismiss} onClick={onDismiss} />
+      <Box bgOverlay css={styles.dismiss} onClick={onDismiss} />
       <Flex
         {...props}
-        bgBlack
+        bgDark
         flexDirection="column"
         justifyContent="flex-start"
         alignItems="center"
