@@ -7,7 +7,7 @@ import Icon from '../icon';
 
 const { breakpoints } = config.get();
 
-const Sidebar = ({ open, docked, isLarge, onDismiss, products, ...props }) => {
+const Sidebar = ({ open, onDismiss, products, ...props }) => {
   const styles = {
     dismiss: {
       position: 'fixed',
@@ -16,7 +16,7 @@ const Sidebar = ({ open, docked, isLarge, onDismiss, products, ...props }) => {
       bottom: 0,
       left: 0,
       zIndex: 20,
-      display: open || docked ? null : 'none',
+      display: open ? null : 'none',
       [breakpoints[1]]: {
         display: 'none',
       },
@@ -28,7 +28,7 @@ const Sidebar = ({ open, docked, isLarge, onDismiss, products, ...props }) => {
       left: 0,
       zIndex: 30,
       height: '100vh',
-      transform: open || docked ? null : 'translateX(-100%)',
+      transform: open ? null : 'translateX(-100%)',
       transition: 'transform .3s cubic-bezier(0.645,  0.045, 0.355, 1.000)',
       overflowX: 'hidden',
       overflowY: 'auto',
@@ -137,8 +137,6 @@ const Sidebar = ({ open, docked, isLarge, onDismiss, products, ...props }) => {
 
 Sidebar.propTypes = {
   open: PropTypes.bool,
-  docked: PropTypes.bool,
-  isLarge: PropTypes.bool,
   products: PropTypes.array,
   onDismiss: PropTypes.func,
 };

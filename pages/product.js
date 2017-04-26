@@ -82,5 +82,4 @@ export default withRedux(initStore, state => ({
   activeProduct: state.Product.active,
   isLarge: state.browser.greaterThan.medium,
   isSidebarOpen: state.Sidebar.open,
-  isSidebarDocked: state.Sidebar.docked,
 }), { setActiveProduct, openSidebar })(Product);
