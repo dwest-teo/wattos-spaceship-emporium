@@ -27,6 +27,7 @@ class Home extends Component {
       <App {...this.props}>
         <Flex
           bgDark
+          flexDirection="column"
           justifyContent="center"
           alignItems="center"
           css={{ height: 300 }}
@@ -37,13 +38,19 @@ class Home extends Component {
             mb4
             is="h1"
             fontSize={1}
-            css={{ fontFamily: 'Concert One' }}
           >
-            Awesome Verbiage
+            Watto&apos;s Space Emporium
+          </Text>
+          <Text
+            center
+            gray
+            fontSize={3}
+          >
+            The final frontier...of savings!
           </Text>
         </Flex>
         <Container bgWhite>
-          <Text my2 is="h2">Current Inventory:</Text>
+          <Text my2 is="h2">Browse Our Current Inventory:</Text>
           <ProductGrid products={this.props.products} />
         </Container>
       </App>

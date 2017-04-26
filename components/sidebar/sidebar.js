@@ -93,18 +93,20 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
             <Text my2 bold white caps fontSize={4} is="span">
               Inventory
             </Text>
-            {products.map((product, i) => (
-              <Box ml1 mb1 key={i} onClick={onDismiss}>
-                <Link
-                  route="product"
-                  params={{ slug: toSlug(product.name) }}
-                >
-                  <Text gray is="a" css={styles.link}>
-                    {product.name}
-                  </Text>
-                </Link>
-              </Box>
-            ))}
+            <Box pl0 is="ul" css={{ listStyleType: 'none' }}>
+              {products.map((product, i) => (
+                <Box pl2 mb1 key={i} is="li" onClick={onDismiss}>
+                  <Link
+                    route="product"
+                    params={{ slug: toSlug(product.name) }}
+                  >
+                    <Text gray is="a" css={styles.link}>
+                      {product.name}
+                    </Text>
+                  </Link>
+                </Box>
+              ))}
+            </Box>
             <Text left mt3 mb2 bold white caps fontSize={4} is="span">
               About Us
             </Text>

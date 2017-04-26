@@ -56,7 +56,7 @@ class Product extends Component {
             {specsArr(activeProduct.techspecs).map((spec, i) => (
               <Box key={i}>
                 <Text bold gray>{spec.label}</Text>
-                <Text css={{ fontFamily: 'Space Mono' }}>{spec.value}</Text>
+                <Text>{spec.value}</Text>
               </Box>
             ))}
           </Box>
