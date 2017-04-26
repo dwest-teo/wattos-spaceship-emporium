@@ -22,13 +22,6 @@ class Home extends Component {
     return { isServer };
   }
 
-  componentWillMount() {
-    // find a better way
-    if (!this.props.isLarge) {
-      this.props.openSidebar(false);
-    }
-  }
-
   render() {
     return (
       <App {...this.props}>
@@ -60,12 +53,11 @@ class Home extends Component {
 
 Home.propTypes = {
   products: PropTypes.array,
-  openSidebar: PropTypes.func,
-  isLarge: PropTypes.bool,
 };
 
 export default withRedux(initStore, state => ({
   products: state.Product.feed,
   isLarge: state.browser.greaterThan.medium,
   isSidebarOpen: state.Sidebar.open,
+  isSidebarDocked: state.Sidebar.docked,
 }), { openSidebar })(Home);

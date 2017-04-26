@@ -8,7 +8,7 @@ import MobileHeader from '../mobile-header';
 const defTitle = 'Watto\'s Spaceship Emporium';
 
 const App = (props) => {
-  const { children, products, isLarge, isSidebarOpen, openSidebar, title } = props;
+  const { children, products, isSidebarOpen, isSidebarDocked, isLarge, title } = props;
 
   return (
     <Container p0 css={{ minHeight: '100vh' }}>
@@ -16,9 +16,10 @@ const App = (props) => {
         <title>{title ? `${title} - ${defTitle}` : defTitle}</title>
       </Head>
       <Sidebar
-        open={isSidebarOpen || isLarge}
+        open={isSidebarOpen}
+        docked={isSidebarDocked}
         products={products}
-        onDismiss={() => openSidebar(false)}
+        onDismiss={() => props.openSidebar(false)}
       />
       <Container
         p0
@@ -26,7 +27,7 @@ const App = (props) => {
         css={{ marginLeft: isLarge ? 300 : 0 }}
       >
         {!isLarge && (
-          <MobileHeader openSidebar={openSidebar} />
+          <MobileHeader openSidebar={props.openSidebar} />
         )}
         {children}
       </Container>
@@ -39,6 +40,7 @@ App.propTypes = {
   children: PropTypes.node,
   isLarge: PropTypes.bool,
   isSidebarOpen: PropTypes.bool,
+  isSidebarDocked: PropTypes.bool,
   title: PropTypes.string,
   openSidebar: PropTypes.func,
 };
