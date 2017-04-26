@@ -2,39 +2,44 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import toSlug from '../lib/to-slug';
 import { Link } from '../routes';
-import { Flex, Text, Image } from './base';
-
-const productCardCss = { height: 280, flexBasis: 220 };
+import { Flex, Box, Text, Image } from './base';
 
 const ProductCard = ({ name, price, imgUrl }) => (
-  <Flex
+  <Box
     m1
-    p1
     rounded
     border
     borderGray2
     flexAuto
-    flexDirection="column"
-    justifyContent="space-between"
-    alignItems="center"
-    css={productCardCss}
+    css={{ flexBasis: 200 }}
   >
     <Link route="product" params={{ slug: toSlug(name) }}>
-      <Image src={imgUrl} />
+      <Flex
+        flexDirection="column"
+        justifyContent="space-between"
+        alignItems="center"
+        width={1}
+        css={{ height: '100%', cursor: 'pointer' }}
+      >
+        <Box p1 width={1} css={{ margin: 'auto' }}>
+          <Image
+            src={imgUrl}
+            alt={name}
+            width={1}
+            css={{ display: 'block' }}
+          />
+        </Box>
+        <Box p1 width={1}>
+          <Text bold fontSize={5}>
+            {name}
+          </Text>
+          <Text gray9 fontSize={6}>
+            {price}
+          </Text>
+        </Box>
+      </Flex>
     </Link>
-    <Text
-      bold
-      fontSize={4}
-    >
-      {name}
-    </Text>
-    <Text
-      gray9
-      fontSize={5}
-    >
-      {price}
-    </Text>
-  </Flex>
+  </Box>
 );
 
 ProductCard.propTypes = {

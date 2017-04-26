@@ -5,11 +5,7 @@ import ProductCard from './product-card';
 import { Flex } from './base';
 
 const ProductGrid = ({ products }) => (
-  <Flex
-    mt2
-    flexWrap="wrap"
-    width={1}
-  >
+  <Flex flexWrap="wrap" width={1}>
     {products.map((product, i) => (
       <ProductCard
         key={i}
