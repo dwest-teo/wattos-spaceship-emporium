@@ -20,3 +20,5 @@ export { default as resetStyles } from './reset-styles';
 export { default as Container } from './container';
 export { default as Flex } from './flex';
 export { default as Image } from './image';
+export { default as DefinitionList } from './definition-list';
+export { List, ListItem } from './list';

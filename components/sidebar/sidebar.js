@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Box, Flex, Text, config } from '../base';
-import SvgIcon from '../svg-icons';
+import {
+  Box,
+  Flex,
+  Text,
+  List,
+  ListItem,
+  config,
+} from '../base';
+import Footer from './footer';
 
 const { breakpoints } = config.get();
 
@@ -81,41 +88,32 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
         <Text my2 bold white caps fontSize={4} width={1} is="span">
           Inventory
         </Text>
-        <Box pl0 mb3 is="ul" css={{ listStyleType: 'none' }}>
+        <List>
           {products.map((product, i) => (
-            <Box pl2 mb1 key={i} is="li" onClick={onDismiss}>
+            <ListItem key={i} onClick={onDismiss}>
               <Link prefetch href={`/product?s=${product.slug}`}>
                 <Text gray is="a" css={styles.link}>
                   {product.name}
                 </Text>
               </Link>
-            </Box>
+            </ListItem>
           ))}
-        </Box>
+        </List>
         <Text left mb2 bold white caps fontSize={4} width={1} is="span">
           About Us
         </Text>
         <Text mb2 bold white caps fontSize={4} width={1} is="span">
           Another Link
         </Text>
-        <Box center gray width={1} css={{ marginTop: 'auto' }}>
-          <Text bold>Watto&apos;s Space Emporium</Text>
-          <Text>Mos Eisley, Tattooine</Text>
-          <Text>&copy; A Long Time Ago</Text>
-          <Flex
-            mt3
-            flexDirection="row"
-            flexWrap="no wrap"
-            justifyContent="space-around"
-            alignItems="center"
-          >
-            <SvgIcon name="googleplus" />
-            <SvgIcon name="twitter" />
-            <SvgIcon name="linkedin" />
-            <SvgIcon name="github" />
-            <SvgIcon name="stackoverflow" />
-          </Flex>
-        </Box>
+        <Footer
+          iconNames={[
+            'googleplus',
+            'twitter',
+            'linkedin',
+            'github',
+            'stackoverflow',
+          ]}
+        />
       </Flex>
     </Box>
   );
