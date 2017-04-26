@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import toSlug from '../../lib/to-slug';
 import { Link } from '../../routes';
 import { Box, Flex, Text, config } from '../base';
-import Icon from '../icon';
+import SvgIcon from '../svg-icons';
 
 const { breakpoints } = config.get();
 
@@ -27,7 +27,6 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
       bottom: 0,
       left: 0,
       zIndex: 30,
-      // height: '100vh',
       transform: open ? null : 'translateX(-100%)',
       transition: 'transform .3s cubic-bezier(0.645,  0.045, 0.355, 1.000)',
       overflowX: 'hidden',
@@ -63,77 +62,65 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
         css={styles.dismiss}
         onClick={onDismiss}
       />
-      <Box
+      <Flex
+        p2
+        flexDirection="column"
+        justifyContent="flex-start"
+        alignItems="center"
         {...props}
         bgDark
         width={300}
         css={styles.bar}
       >
-        <Flex
-          p2
-          flexDirection="column"
-          justifyContent="flex-start"
-          alignItems="center"
-          width={1}
-          css={{ height: '100%' }}
-        >
-          <Box width={1} onClick={onDismiss}>
-            <Link route="index">
-              <Text bold white fontSize={4} css={styles.link}>
-                Wattos Space Emporium
-              </Text>
-            </Link>
-          </Box>
-          <Flex
-            my2
-            width={1}
-            flexDirection="column"
-            justifyContent="space-around"
-          >
-            <Text my2 bold white caps fontSize={4} is="span">
-              Inventory
+        <Box width={1} onClick={onDismiss}>
+          <Link route="index">
+            <Text bold white fontSize={4} css={styles.link}>
+              Watto&apos;s Space Emporium
             </Text>
-            <Box pl0 is="ul" css={{ listStyleType: 'none' }}>
-              {products.map((product, i) => (
-                <Box pl2 mb1 key={i} is="li" onClick={onDismiss}>
-                  <Link
-                    route="product"
-                    params={{ slug: toSlug(product.name) }}
-                  >
-                    <Text gray is="a" css={styles.link}>
-                      {product.name}
-                    </Text>
-                  </Link>
-                </Box>
-              ))}
+          </Link>
+        </Box>
+        <Text my2 bold white caps fontSize={4} width={1} is="span">
+          Inventory
+        </Text>
+        <Box pl0 mb3 is="ul" css={{ listStyleType: 'none' }}>
+          {products.map((product, i) => (
+            <Box pl2 mb1 key={i} is="li" onClick={onDismiss}>
+              <Link
+                route="product"
+                params={{ slug: toSlug(product.name) }}
+              >
+                <Text gray is="a" css={styles.link}>
+                  {product.name}
+                </Text>
+              </Link>
             </Box>
-            <Text left mt3 mb2 bold white caps fontSize={4} is="span">
-              About Us
-            </Text>
-            <Text my2 bold white caps fontSize={4} is="span">
-              Another Link
-            </Text>
+          ))}
+        </Box>
+        <Text left mb2 bold white caps fontSize={4} width={1} is="span">
+          About Us
+        </Text>
+        <Text mb2 bold white caps fontSize={4} width={1} is="span">
+          Another Link
+        </Text>
+        <Box center gray width={1} css={{ marginTop: 'auto' }}>
+          <Text bold>Watto&apos;s Space Emporium</Text>
+          <Text>Mos Eisley, Tattooine</Text>
+          <Text>&copy; A Long Time Ago</Text>
+          <Flex
+            mt3
+            flexDirection="row"
+            flexWrap="no wrap"
+            justifyContent="space-around"
+            alignItems="center"
+          >
+            <SvgIcon name="googleplus" />
+            <SvgIcon name="twitter" />
+            <SvgIcon name="linkedin" />
+            <SvgIcon name="github" />
+            <SvgIcon name="stackoverflow" />
           </Flex>
-          <Box center gray width={1} css={{ marginTop: 'auto' }}>
-            <Text bold>Wattos Space Emporium</Text>
-            <Text>Mos Eisley, Tattooine</Text>
-            <Text>&copy; A Long Time Ago</Text>
-            <Flex
-              mt3
-              flexDirection="row"
-              flexWrap="no wrap"
-              justifyContent="space-around"
-              alignItems="center"
-            >
-              <Icon name="googleplus" />
-              <Icon name="twitter" />
-              <Icon name="linkedin" />
-              <Icon name="github" />
-              <Icon name="stackoverflow" />
-            </Flex>
-          </Box>
-        </Flex>
-      </Box>
+        </Box>
+      </Flex>
     </Box>
   );
 };

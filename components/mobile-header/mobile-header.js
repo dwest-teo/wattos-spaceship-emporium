@@ -7,7 +7,7 @@ import { Box, Flex, Text } from '../base';
 const MobileHeader = ({ openSidebar }) => (
   <Flex
     p2
-    bgBlack
+    bgDark
     flexDirection="row"
     justifyContent="flex-start"
     alignItems="center"
@@ -20,8 +20,8 @@ const MobileHeader = ({ openSidebar }) => (
     />
     <Box flexAuto center>
       <Link route="index">
-        <Text bold blue fontSize={4}>
-          Wattos Space Emporium
+        <Text bold white fontSize={4}>
+          Watto&apos;s Space Emporium
         </Text>
       </Link>
     </Box>
