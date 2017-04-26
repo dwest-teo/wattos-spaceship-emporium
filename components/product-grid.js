@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import toSlug from '../lib/to-slug';
 import ProductCard from './product-card';
 import { Flex } from './base';
 
@@ -11,7 +10,8 @@ const ProductGrid = ({ products }) => (
         key={i}
         name={product.name}
         price={product.price || 'Priced too low to show!'}
-        imgUrl={`/static/images/${toSlug(product.name)}/thumb.jpg`}
+        thumbnail={`/static/images/thumbnails/${product.thumbnail}`}
+        slug={product.slug}
       />
     ))}
   </Flex>
@@ -22,7 +22,8 @@ ProductGrid.propTypes = {
     PropTypes.shape({
       name: PropTypes.string,
       price: PropTypes.string,
-      imgUrl: PropTypes.string,
+      thumbnail: PropTypes.string,
+      slug: PropTypes.string,
     }),
   ),
 };

@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import toSlug from '../lib/to-slug';
-import { Link } from '../routes';
+import Link from 'next/link';
 import { Flex, Box, Text, Image } from './base';
 
-const ProductCard = ({ name, price, imgUrl }) => (
+const ProductCard = ({ name, price, thumbnail, slug }) => (
   <Box
     m1
     rounded
@@ -13,7 +12,7 @@ const ProductCard = ({ name, price, imgUrl }) => (
     flexAuto
     css={{ flexBasis: 200 }}
   >
-    <Link prefetch route="product" params={{ slug: toSlug(name) }}>
+    <Link prefetch href={`/product?s=${slug}`}>
       <Flex
         flexDirection="column"
         justifyContent="space-between"
@@ -23,7 +22,7 @@ const ProductCard = ({ name, price, imgUrl }) => (
       >
         <Box p1 width={1} css={{ margin: 'auto' }}>
           <Image
-            src={imgUrl}
+            src={thumbnail}
             alt={name}
             width={1}
             css={{ display: 'block' }}
@@ -45,7 +44,8 @@ const ProductCard = ({ name, price, imgUrl }) => (
 ProductCard.propTypes = {
   name: PropTypes.string,
   price: PropTypes.string,
-  imgUrl: PropTypes.string,
+  thumbnail: PropTypes.string,
+  slug: PropTypes.string,
 };
 
 export default ProductCard;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import { Burger } from 'reline';
-import { Link } from '../../routes';
 import { Box, Flex, Text, config } from '../base';
 
 const MobileHeader = ({ openSidebar }) => (
@@ -19,7 +19,7 @@ const MobileHeader = ({ openSidebar }) => (
       onClick={() => openSidebar(true)}
     />
     <Box flexAuto center mr={24} css={{ cursor: 'pointer' }}>
-      <Link route="index">
+      <Link prefetch href="/">
         <Text bold white fontSize={4}>
           Watto&apos;s Space Emporium
         </Text>
@@ -29,8 +29,6 @@ const MobileHeader = ({ openSidebar }) => (
 );
 
 MobileHeader.propTypes = {
-  docked: PropTypes.bool,
-  open: PropTypes.bool,
   openSidebar: PropTypes.func,
 };
 

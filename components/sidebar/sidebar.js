@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import toSlug from '../../lib/to-slug';
-import { Link } from '../../routes';
+import Link from 'next/link';
 import { Box, Flex, Text, config } from '../base';
 import SvgIcon from '../svg-icons';
 
@@ -73,7 +72,7 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
         css={styles.bar}
       >
         <Box width={1} onClick={onDismiss}>
-          <Link route="index">
+          <Link prefetch href="/">
             <Text bold white fontSize={4} css={styles.link}>
               Watto&apos;s Space Emporium
             </Text>
@@ -85,11 +84,7 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
         <Box pl0 mb3 is="ul" css={{ listStyleType: 'none' }}>
           {products.map((product, i) => (
             <Box pl2 mb1 key={i} is="li" onClick={onDismiss}>
-              <Link
-                prefetch
-                route="product"
-                params={{ slug: toSlug(product.name) }}
-              >
+              <Link prefetch href={`/product?s=${product.slug}`}>
                 <Text gray is="a" css={styles.link}>
                   {product.name}
                 </Text>

@@ -11,6 +11,8 @@ import { Container, Text, Flex, Image, Box } from '../components/base';
 
 class Product extends Component {
   static async getInitialProps({ store, isServer, query }) {
+    const { s } = query;
+
     if (isServer) {
       const products = await fetchProducts();
       const decoratedProducts = await decorateProducts(products);
@@ -18,7 +20,7 @@ class Product extends Component {
     }
 
     const productFeed = await store.getState().Product.feed;
-    const product = await productFeed.find(p => p.slug === query.slug);
+    const product = await productFeed.find(p => p.slug === s);
 
     return { product };
   }
