@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
-import App from '../components/app';
-import ProductGrid from '../components/product-grid';
-import { Container, Box, Flex, Text } from '../components/base';
 import fetchProducts from '../lib/fetch-products';
 import decorateProducts from '../lib/decorate-products';
 import initStore from '../lib/store';
-import { setFeedSavedStatus, setProductFeed } from '../actions/product';
+import { setProductFeed } from '../actions/product';
 import { openSidebar } from '../actions/sidebar';
+import App from '../components/app';
+import ProductGrid from '../components/product-grid';
+import { Container, Box, Flex, Text } from '../components/base';
 
 class Home extends Component {
   static async getInitialProps({ store, isServer }) {
-    const feedSaved = store.getState().Product.feedSaved;
-
-    if (!feedSaved) {
+    if (isServer) {
       const products = await fetchProducts();
       const decoratedProducts = await decorateProducts(products);
-      store.dispatch(setProductFeed(decoratedProducts));
-      store.dispatch(setFeedSavedStatus(true));
+      await store.dispatch(setProductFeed(decoratedProducts));
     }
 
     return { isServer };

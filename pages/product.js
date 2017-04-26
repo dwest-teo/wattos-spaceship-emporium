@@ -4,33 +4,23 @@ import withRedux from 'next-redux-wrapper';
 import fetchProducts from '../lib/fetch-products';
 import decorateProducts from '../lib/decorate-products';
 import initStore from '../lib/store';
-import {
-  setFeedSavedStatus,
-  setProductFeed,
-  setActiveProduct,
-} from '../actions/product';
+import { setProductFeed } from '../actions/product';
 import { openSidebar } from '../actions/sidebar';
 import App from '../components/app';
 import { Container, Text, Flex, Image, Box } from '../components/base';
 
 class Product extends Component {
   static async getInitialProps({ store, isServer, query }) {
-    let products;
-    const feedSaved = store.getState().Product.feedSaved;
-
-    if (feedSaved) {
-      products = store.getState().Product.feed;
-    } else {
-      const productFeed = await fetchProducts();
-      products = await decorateProducts(productFeed);
-      store.dispatch(setProductFeed(products));
-      store.dispatch(setFeedSavedStatus(true));
+    if (isServer) {
+      const products = await fetchProducts();
+      const decoratedProducts = await decorateProducts(products);
+      await store.dispatch(setProductFeed(decoratedProducts));
     }
 
-    const activeProd = products.find(p => p.slug === query.slug);
-    store.dispatch(setActiveProduct(activeProd));
+    const productFeed = await store.getState().Product.feed;
+    const product = await productFeed.find(p => p.slug === query.slug);
 
-    return { isServer };
+    return { product };
   }
 
   componentWillUnmount() {
@@ -38,33 +28,38 @@ class Product extends Component {
   }
 
   render() {
-    const { activeProduct } = this.props;
+    const { product } = this.props;
 
     return (
-      <App title={activeProduct.name} {...this.props}>
+      <App title={product.name} {...this.props}>
         <Container>
-          <Text is="h1">{activeProduct.name}</Text>
+          <Text is="h1">{product.name}</Text>
           <Image
             width={1}
-            src={`/static/images/${activeProduct.slug}/0.jpg`}
-            alt={activeProduct.name}
+            src={`/static/images/product/${product.images[0]}`}
+            alt={product.name}
           />
           <Flex
             alignItems="center"
           >
             <Box>
-              <Text>{activeProduct.manufacturer}</Text>
-              <Text>{activeProduct.class}</Text>
+              <Text>{product.manufacturer}</Text>
+              <Text>{product.class}</Text>
             </Box>
             <Text flexAuto right fontSize={3}>
-              {activeProduct.price || 'Call for our sale price!'}
+              {product.price || 'Call for our sale price!'}
             </Text>
           </Flex>
+          <Box my3>
+            <Text is="p">
+              {product.description}
+            </Text>
+          </Box>
           <Box my3>
             <Text mb2 is="h3">
               Specifications:
             </Text>
-            {activeProduct.techspecs.map((spec, i) => (
+            {product.techspecs.map((spec, i) => (
               <Box mb1 key={i} is="dl">
                 <Box bold is="dt" display="inline-block" fontSize={6}>
                   {`${spec.label}: `}
@@ -82,13 +77,15 @@ class Product extends Component {
 }
 
 Product.propTypes = {
-  activeProduct: PropTypes.shape({
+  product: PropTypes.shape({
     name: PropTypes.string,
     manufacturer: PropTypes.string,
     class: PropTypes.string,
     price: PropTypes.string,
     techspecs: PropTypes.array,
     slug: PropTypes.string,
+    description: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
   }),
   setActiveProduct: PropTypes.func,
 };
@@ -98,4 +95,4 @@ export default withRedux(initStore, state => ({
   activeProduct: state.Product.active,
   isLarge: state.browser.greaterThan.medium,
   isSidebarOpen: state.Sidebar.open,
-}), { setActiveProduct, openSidebar })(Product);
+}), { openSidebar })(Product);
