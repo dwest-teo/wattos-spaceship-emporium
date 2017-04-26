@@ -51,7 +51,7 @@ class Product extends Component {
               <Text>{activeProduct.price}</Text>
             </Box>
           </Flex>
-          <Image width={1} src="https://www.stevensegallery.com/600/400" />
+          <Image width={1} src={`/static/images/${toSlug(activeProduct.name)}/0.jpg`} />
           <Box mt2 pt2 borderTop>
             {specsArr(activeProduct.techspecs).map((spec, i) => (
               <Box key={i}>
