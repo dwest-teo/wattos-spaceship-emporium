@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Burger } from 'reline';
 import { Link } from '../../routes';
-import { Box, Flex, Text } from '../base';
+import { Box, Flex, Text, config } from '../base';
 
 const MobileHeader = ({ openSidebar }) => (
   <Flex
@@ -13,12 +13,12 @@ const MobileHeader = ({ openSidebar }) => (
     alignItems="center"
   >
     <Burger
-      stroke="#9F9F9F"
+      stroke={config.colors.gray}
       strokeWidth={2}
       size={24}
       onClick={() => openSidebar(true)}
     />
-    <Box flexAuto center>
+    <Box flexAuto center mr={24} css={{ cursor: 'pointer' }}>
       <Link route="index">
         <Text bold white fontSize={4}>
           Watto&apos;s Space Emporium

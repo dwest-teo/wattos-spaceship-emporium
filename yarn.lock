@@ -1326,7 +1326,7 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-cxs@^3.0.1:
+cxs@^3.0.1, cxs@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/cxs/-/cxs-3.0.4.tgz#2e1a1537742931a53dbe3157afbf121da62df797"
   dependencies:

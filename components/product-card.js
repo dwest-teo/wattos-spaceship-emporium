@@ -13,7 +13,7 @@ const ProductCard = ({ name, price, imgUrl }) => (
     flexAuto
     css={{ flexBasis: 200 }}
   >
-    <Link route="product" params={{ slug: toSlug(name) }}>
+    <Link prefetch route="product" params={{ slug: toSlug(name) }}>
       <Flex
         flexDirection="column"
         justifyContent="space-between"

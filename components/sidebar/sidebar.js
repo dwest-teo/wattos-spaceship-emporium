@@ -86,6 +86,7 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
           {products.map((product, i) => (
             <Box pl2 mb1 key={i} is="li" onClick={onDismiss}>
               <Link
+                prefetch
                 route="product"
                 params={{ slug: toSlug(product.name) }}
               >
