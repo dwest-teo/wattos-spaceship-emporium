@@ -40,18 +40,23 @@ class Product extends Component {
     return (
       <App title={activeProduct.name} {...this.props}>
         <Container>
+          <Text is="h1">{activeProduct.name}</Text>
+          <Image
+            width={1}
+            src={`/static/images/${toSlug(activeProduct.name)}/0.jpg`}
+            alt={activeProduct.name}
+          />
           <Flex
-            justifyContent="space-between"
             alignItems="center"
           >
-            <Text is="h1">{activeProduct.name}</Text>
-            <Box right>
+            <Box>
               <Text>{activeProduct.manufacturer}</Text>
               <Text>{activeProduct.class}</Text>
-              <Text>{activeProduct.price}</Text>
             </Box>
+            <Text flexAuto right fontSize={3}>
+              {activeProduct.price || 'Call for our sale price!'}
+            </Text>
           </Flex>
-          <Image width={1} src={`/static/images/${toSlug(activeProduct.name)}/0.jpg`} />
           <Box mt2 pt2 borderTop>
             {specsArr(activeProduct.techspecs).map((spec, i) => (
               <Box key={i}>
