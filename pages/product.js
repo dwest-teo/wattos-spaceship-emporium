@@ -14,6 +14,7 @@ import {
   Box,
   DefinitionList,
 } from '../components/base';
+import Carousel from '../components/product/carousel';
 
 const Product = (props) => {
   const { activeProduct } = props;
@@ -27,6 +28,7 @@ const Product = (props) => {
           src={`/static/images/product/${activeProduct.images[0]}`}
           alt={activeProduct.name}
         />
+        <Carousel images={activeProduct.images} />
         <Flex
           my3
           alignItems="center"
