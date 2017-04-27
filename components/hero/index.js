@@ -1,11 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Starfield from './starfield';
 import HeroContent from './hero-content';
 
-const Hero = ({ ...props }) => (
+const Hero = ({ heading, subheading, ...props }) => (
   <Starfield {...props}>
-    <HeroContent />
+    <HeroContent heading={heading} subheading={subheading} />
   </Starfield>
 );
+
+Hero.propTypes = {
+  heading: PropTypes.string,
+  subheading: PropTypes.string,
+};
+
+Hero.displayName = 'Hero';
 
 export default Hero;

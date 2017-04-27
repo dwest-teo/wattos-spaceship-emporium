@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Flex, Text } from '../base';
 
-const HeroContent = () => (
+const HeroContent = ({ heading, subheading }) => (
   <Flex
     p={[ 2, 3, 4, 4 ]}
     flexDirection="column"
@@ -18,7 +19,7 @@ const HeroContent = () => (
       fontSize={[ 2, 2, 1, 1 ]}
       css={{ fontWeight: 300 }}
     >
-      No Jedi mind tricks...
+      {heading}
     </Text>
     <Text
       center
@@ -26,9 +27,16 @@ const HeroContent = () => (
       gray
       fontSize={[ 4, 4, 3, 3 ]}
     >
-      Just great deals on preowned spacecraft!
+      {subheading}
     </Text>
   </Flex>
 );
+
+HeroContent.propTypes = {
+  heading: PropTypes.string,
+  subheading: PropTypes.string,
+};
+
+HeroContent.displayName = 'HeroContent';
 
 export default HeroContent;

@@ -24,7 +24,7 @@ const attachGlobalStyles = () => {
     textRendering: 'optimizeLegibility',
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
-  })
-}
+  });
+};
 
 export default attachGlobalStyles;

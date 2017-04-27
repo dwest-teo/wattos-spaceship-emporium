@@ -13,9 +13,6 @@ applySettings();
 // utility/fns
 export { default as attachGlobalStyles } from './global-styles';
 
-// style objects
-export { default as resetStyles } from './reset-styles';
-
 // components
 export { default as Container } from './container';
 export { default as Flex } from './flex';
