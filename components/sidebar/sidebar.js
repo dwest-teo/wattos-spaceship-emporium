@@ -10,11 +10,27 @@ import {
   config,
 } from '../base';
 import Footer from './footer';
+import Wrapper from './wrapper';
+import Content from './content';
 
 const { breakpoints } = config.get();
 
-const Sidebar = ({ open, onDismiss, products, ...props }) => {
+const Sidebar = ({ children, open, onDismiss, products, ...props }) => {
   const styles = {
+    wrapper: {
+      position: 'relative',
+      overflowX: 'hidden',
+      minHeight: '100vh',
+    },
+    content: {
+      position: 'relative',
+      height: '100%',
+      transition: 'transform .3s cubic-bezier(0.645,  0.045, 0.355, 1.000)',
+      transform: open ? 'translateX(300px)' : 'translateX(0)',
+      [breakpoints[1]]: {
+        transform: 'translateX(300px)',
+      },
+    },
     dismiss: {
       position: 'fixed',
       top: 0,
@@ -31,14 +47,14 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
       position: 'fixed',
       top: 0,
       bottom: 0,
-      left: 0,
+      left: -300,
       zIndex: 30,
-      transform: open ? null : 'translateX(-100%)',
       transition: 'transform .3s cubic-bezier(0.645,  0.045, 0.355, 1.000)',
+      transform: open ? 'translateX(300px)' : 'translateX(0)',
       overflowX: 'hidden',
       overflowY: 'auto',
       [breakpoints[1]]: {
-        transform: null,
+        transform: 'translateX(0)',
       },
     },
     link: {
@@ -62,7 +78,7 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
   };
 
   return (
-    <Box>
+    <Wrapper css={styles.wrapper}>
       <Box
         bgOverlay
         css={styles.dismiss}
@@ -74,7 +90,7 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
         justifyContent="flex-start"
         alignItems="center"
         {...props}
-        bgDark
+        bgBar
         width={300}
         css={styles.bar}
       >
@@ -115,11 +131,15 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
           ]}
         />
       </Flex>
-    </Box>
+      <Content css={styles.content}>
+        {children}
+      </Content>
+    </Wrapper>
   );
 };
 
 Sidebar.propTypes = {
+  children: PropTypes.node,
   open: PropTypes.bool,
   products: PropTypes.array,
   onDismiss: PropTypes.func,
@@ -128,5 +148,7 @@ Sidebar.propTypes = {
 Sidebar.defaultProps = {
   open: false,
 };
+
+Sidebar.displayName = 'Sidebar';
 
 export default Sidebar;
