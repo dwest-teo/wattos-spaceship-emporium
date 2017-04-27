@@ -77,7 +77,7 @@ const defParams = {
     detect_on: 'canvas',
     events: {
       onhover: {
-        enable: true,
+        enable: false,
         mode: 'grab',
       },
       onclick: {
@@ -118,11 +118,19 @@ const defParams = {
 
 const Starfield = ({ children, params = defParams, ...props }) => (
   <Box css={{ position: 'relative' }}>
-    <Box css={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }}>
+    <Box>
       {children}
     </Box>
     <Particles
-      style={{ backgroundColor: config.colors.dark }}
+      style={{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        zIndex: -1,
+        backgroundColor: config.colors.dark,
+      }}
       params={params}
       {...props}
     />

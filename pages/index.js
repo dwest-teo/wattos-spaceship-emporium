@@ -1,65 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
-import fetchProducts from '../lib/fetch-products';
-import decorateProducts from '../lib/decorate-products';
 import initStore from '../lib/store';
-import { setProductFeed } from '../actions/product';
+import serverSideInit from '../lib/server-side-init';
 import { openSidebar } from '../actions/sidebar';
+
 import App from '../components/app';
 import ProductGrid from '../components/product-grid';
-import { Container, Box, Flex, Text } from '../components/base';
-import Starfield from '../components/starfield';
+import Hero from '../components/hero';
 
-class Home extends Component {
-  static async getInitialProps({ store, isServer }) {
-    if (isServer) {
-      const products = await fetchProducts();
-      const decoratedProducts = await decorateProducts(products);
-      await store.dispatch(setProductFeed(decoratedProducts));
-    }
+const Home = props => (
+  <App {...props}>
+    <Hero />
+    <ProductGrid
+      products={props.products}
+      heading="Browse Our Current Inventory:"
+    />
+  </App>
+);
 
-    return { isServer };
-  }
-
-  render() {
-    return (
-      <App {...this.props}>
-        <Starfield>
-          <Flex
-            p2
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            css={{ height: '100%' }}
-          >
-            <Text
-              center
-              gray2
-              mb4
-              is="h1"
-              fontSize={1}
-            >
-              Watto&apos;s Space Emporium
-            </Text>
-            <Text
-              center
-              mb2
-              gray
-              fontSize={3}
-            >
-              The final frontier...of savings!
-            </Text>
-          </Flex>
-        </Starfield>
-        <Container bgWhite>
-          <Text my2 is="h2">Browse Our Current Inventory:</Text>
-          <ProductGrid products={this.props.products} />
-        </Container>
-      </App>
-    );
-  }
-}
+Home.getInitialProps = async ({ store, isServer }) => {
+  const init = await serverSideInit(store, isServer);
+  return { init };
+};
 
 Home.propTypes = {
   products: PropTypes.array,

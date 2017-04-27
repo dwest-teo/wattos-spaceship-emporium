@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
-import fetchProducts from '../lib/fetch-products';
-import decorateProducts from '../lib/decorate-products';
 import initStore from '../lib/store';
-import { setProductFeed } from '../actions/product';
+import serverSideInit from '../lib/server-side-init';
 import { openSidebar } from '../actions/sidebar';
+
 import App from '../components/app';
 import {
   Container,
@@ -15,73 +14,64 @@ import {
   Box,
   DefinitionList,
 } from '../components/base';
-// import ImgCarousel from '../components/product/carousel';
 
-class Product extends Component {
-  static async getInitialProps({ store, isServer, query }) {
-    const { s } = query;
+const Product = (props) => {
+  const { activeProduct } = props;
 
-    if (isServer) {
-      const products = await fetchProducts();
-      const decoratedProducts = await decorateProducts(products);
-      await store.dispatch(setProductFeed(decoratedProducts));
-    }
-
-    const productFeed = await store.getState().Product.feed;
-    const product = await productFeed.find(p => p.slug === s);
-
-    return { product };
-  }
-
-  render() {
-    const { product } = this.props;
-
-    return (
-      <App title={product.name} {...this.props}>
-        <Container>
-          <Text mb2 is="h1">{product.name}</Text>
-          <Image
-            width={1}
-            src={`/static/images/product/${product.images[0]}`}
-            alt={product.name}
-          />
-          {/* <ImgCarousel images={product.images} path="/static/images/product/" /> */}
-          <Flex
-            my3
-            alignItems="center"
-          >
-            <Box>
-              <Text gray6 fontSize={6}>{product.manufacturer}</Text>
-              <Text gray6 fontSize={6}>{product.class}</Text>
-            </Box>
-            <Text flexAuto right fontSize={3}>
-              {product.price || 'Call for our sale price!'}
-            </Text>
-          </Flex>
-          <Box my3>
-            <Text caps mb1 is="h3" fontSize={4}>
-              About this ship:
-            </Text>
-            <Text is="p">
-              {product.description}
-            </Text>
+  return (
+    <App title={activeProduct.name} {...props}>
+      <Container>
+        <Text mb2 is="h1">{activeProduct.name}</Text>
+        <Image
+          width={1}
+          src={`/static/images/product/${activeProduct.images[0]}`}
+          alt={activeProduct.name}
+        />
+        <Flex
+          my3
+          alignItems="center"
+        >
+          <Box>
+            <Text gray6 fontSize={6}>{activeProduct.manufacturer}</Text>
+            <Text gray6 fontSize={6}>{activeProduct.class}</Text>
           </Box>
-          <Box my3>
-            <Text caps mb1 is="h3" fontSize={4}>
-              Specifications:
-            </Text>
-            {product.techspecs.map((spec, i) => (
-              <DefinitionList key={i} entry={spec} />
-            ))}
-          </Box>
-        </Container>
-      </App>
-    );
-  }
-}
+          <Text flexAuto right fontSize={3}>
+            {activeProduct.price || 'Call for Pricing'}
+          </Text>
+        </Flex>
+        <Box my3>
+          <Text caps mb1 is="h3" fontSize={4}>
+            About this ship:
+          </Text>
+          <Text is="p">
+            {activeProduct.description}
+          </Text>
+        </Box>
+        <Box my3>
+          <Text caps mb1 is="h3" fontSize={4}>
+            Specifications:
+          </Text>
+          {activeProduct.techspecs.map((spec, i) => (
+            <DefinitionList key={i} entry={spec} />
+          ))}
+        </Box>
+      </Container>
+    </App>
+  );
+};
+
+Product.getInitialProps = async ({ store, isServer, query }) => {
+  const { s } = query;
+
+  const init = await serverSideInit(store, isServer);
+  const productFeed = await store.getState().Product.feed;
+  const activeProduct = await productFeed.find(p => p.slug === s);
+
+  return { activeProduct, init };
+};
 
 Product.propTypes = {
-  product: PropTypes.shape({
+  activeProduct: PropTypes.shape({
     name: PropTypes.string,
     manufacturer: PropTypes.string,
     class: PropTypes.string,
