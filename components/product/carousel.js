@@ -74,9 +74,9 @@ ProgressView.propTypes = {
 ProgressView.displayName = 'ProgressView';
 
 const ProgressBar = ({ progress }) => (
-  <Box bgGray7 width={1} css={styles.progressContainer}>
+  <Box bgGray3 width={1} css={styles.progressContainer}>
     <Box
-      bgDark
+      bgGray9
       width={1}
       css={{
         ...styles.progressBar,
