@@ -27,15 +27,16 @@ class Home extends Component {
       <App {...this.props}>
         <Starfield>
           <Flex
-            pb4
+            p2
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
+            css={{ height: '100%' }}
           >
             <Text
               center
               gray2
-              mt4
+              mb4
               is="h1"
               fontSize={1}
             >
@@ -43,7 +44,7 @@ class Home extends Component {
             </Text>
             <Text
               center
-              mt2
+              mb2
               gray
               fontSize={3}
             >
