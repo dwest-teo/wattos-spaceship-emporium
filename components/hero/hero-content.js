@@ -17,7 +17,7 @@ const HeroContent = () => (
       is="h1"
       fontSize={1}
     >
-      Watto&apos;s Space Emporium
+      The final frontier...of savings!
     </Text>
     <Text
       center
@@ -25,7 +25,7 @@ const HeroContent = () => (
       gray
       fontSize={3}
     >
-      The final frontier...of savings!
+      Shop Watto&apos;s for the best deals on preowned spacecraft
     </Text>
   </Flex>
 );
