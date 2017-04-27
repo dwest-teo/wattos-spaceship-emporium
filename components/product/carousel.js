@@ -1,60 +1,48 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Box, withAxs } from 'axs';
 import { ViewPager, Frame, Track, View, AnimatedView } from 'react-view-pager';
 import { Image } from '../base';
 
+const StyledViewPager = withAxs(ViewPager);
+const StyledFrame = withAxs(Frame);
+const StyledTrack = withAxs(Track);
+const StyledView = withAxs(View);
+const StyledAnimatedView = withAxs(AnimatedView);
+
+const thumb = image => image.replace('.jpg', '-s.jpg');
+
 const styles = {
   viewport: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
     maxWidth: 800,
     margin: '0 auto',
   },
   frame: {
-    width: '100%',
     maxWidth: 800,
     margin: '0 auto',
   },
-  track: {
-    display: 'flex',
-  },
   view: {
-    flex: 1,
     userSelect: 'none',
   },
   progressContainer: {
-    width: '100%',
     height: 3,
     position: 'relative',
-    background: '#e6e6e6',
   },
   progressBar: {
-    width: '100%',
     height: '100%',
-    background: '#0f0f0f',
     transformOrigin: 'left center',
     position: 'absolute',
   },
-  pager: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    margin: '6px 0px',
-  },
   page: {
-    width: 70,
     height: 50,
     cursor: 'pointer',
-    marginRight: 12,
   },
 };
 
 class ProgressView extends Component {
   render() {
     return (
-      <View style={styles.view} {...this.props}>
+      <StyledView flexAuto css={styles.view} {...this.props}>
         <AnimatedView
           animations={[ {
             prop: 'opacity',
@@ -74,7 +62,7 @@ class ProgressView extends Component {
         >
           {this.props.children}
         </AnimatedView>
-      </View>
+      </StyledView>
     );
   }
 }
@@ -86,14 +74,16 @@ ProgressView.propTypes = {
 ProgressView.displayName = 'ProgressView';
 
 const ProgressBar = ({ progress }) => (
-  <div style={styles.progressContainer}>
-    <div
-      style={{
+  <Box bgGray7 width={1} css={styles.progressContainer}>
+    <Box
+      bgDark
+      width={1}
+      css={{
         ...styles.progressBar,
         transform: `scaleX(${Math.max(0, Math.min(1, progress))})`,
       }}
     />
-  </div>
+  </Box>
 );
 
 ProgressBar.propTypes = {
@@ -103,7 +93,8 @@ ProgressBar.propTypes = {
 ProgressBar.displayName = 'ProgressBar';
 
 const ProgressPage = ({ index, children, onClick }) => (
-  <AnimatedView
+  <StyledAnimatedView
+    mr2
     key={index}
     index={index}
     animations={[ {
@@ -121,13 +112,14 @@ const ProgressPage = ({ index, children, onClick }) => (
         [ 300, 0.5 ],
       ],
     } ]}
-    style={styles.page}
+    width={70}
+    css={styles.page}
     onClick={(e) => {
       onClick(e);
     }}
   >
     {children}
-  </AnimatedView>
+  </StyledAnimatedView>
 );
 
 ProgressPage.propTypes = {
@@ -155,10 +147,6 @@ class Carousel extends Component {
     }
   }
 
-  // _handleScroll(progress, trackPosition) {
-  //   this.setState({ progress });
-  // }
-
   _handleScroll(progress) {
     this.setState({ progress });
   }
@@ -166,15 +154,22 @@ class Carousel extends Component {
   render() {
     const { currentView, progress } = this.state;
     return (
-      <ViewPager style={styles.viewport}>
-        <Frame
+      <StyledViewPager
+        width={1}
+        display="flex"
+        flexDirection="column"
+        css={styles.viewport}
+      >
+        <StyledFrame
+          width={1}
+          // eslint-disable-next-line no-return-assign
           ref={c => this.frame = c}
-          style={styles.frame}
+          css={styles.frame}
         >
-          <Track
+          <StyledTrack
             infinite
+            display="flex"
             currentView={currentView}
-            style={styles.track}
             onScroll={this._handleScroll}
             onViewChange={(currentIndicies) => {
               this.setState({ currentView: currentIndicies[0] });
@@ -185,21 +180,29 @@ class Carousel extends Component {
                 <Image src={`/static/images/product/${image}`} />
               </ProgressView>
             ))}
-          </Track>
+          </StyledTrack>
           <ProgressBar progress={progress} />
-        </Frame>
-        <nav style={styles.pager}>
+        </StyledFrame>
+        <Box
+          my1
+          mx0
+          display="flex"
+          flexDirection="row"
+          justifyContent="flex-start"
+          alignItems="center"
+          is="nav"
+        >
           {this.props.images.map((image, i) =>
             <ProgressPage
               key={i}
               index={i}
               onClick={() => this.setState({ currentView: i })}
             >
-              <Image src={`/static/images/product/${image.replace('.jpg', '-s.jpg')}`} />
+              <Image src={`/static/images/product/${thumb(image)}`} />
             </ProgressPage>
           )}
-        </nav>
-      </ViewPager>
+        </Box>
+      </StyledViewPager>
     );
   }
 }
