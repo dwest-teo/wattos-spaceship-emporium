@@ -6,13 +6,13 @@ import serverSideInit from '../lib/server-side-init';
 import { openSidebar } from '../actions/sidebar';
 
 import App from '../components/app';
-import ProductGrid from '../components/product-grid';
+import Grid from '../components/product/grid';
 import Hero from '../components/hero';
 
 const Home = props => (
   <App {...props}>
     <Hero />
-    <ProductGrid
+    <Grid
       products={props.products}
       heading="Browse Our Current Inventory:"
     />

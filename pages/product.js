@@ -21,7 +21,7 @@ const Product = (props) => {
   return (
     <App title={activeProduct.name} {...props}>
       <Container>
-        <Text mb2 is="h1">{activeProduct.name}</Text>
+        <Text mb2 is="h1" fontSize={[ 3, 2, 2, 2 ]}>{activeProduct.name}</Text>
         <Image
           width={1}
           src={`/static/images/product/${activeProduct.images[0]}`}

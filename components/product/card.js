@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Flex, Box, Text, Image } from './base';
+import { Flex, Box, Text, Image } from '../base';
 
-const ProductCard = ({ name, price, thumbnail, slug }) => (
+const cardStyles = { flexBasis: 200 };
+
+const Card = ({ name, price, thumbnail, slug }) => (
   <Box
     m1
     rounded
     border
     borderGray2
     flexAuto
-    css={{ flexBasis: 200 }}
+    css={cardStyles}
   >
     <Link prefetch href={`/product?s=${slug}`}>
       <Flex
@@ -41,11 +43,11 @@ const ProductCard = ({ name, price, thumbnail, slug }) => (
   </Box>
 );
 
-ProductCard.propTypes = {
+Card.propTypes = {
   name: PropTypes.string,
   price: PropTypes.string,
   thumbnail: PropTypes.string,
   slug: PropTypes.string,
 };
 
-export default ProductCard;
+export default Card;

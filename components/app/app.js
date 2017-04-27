@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { Container } from '../base';
-import { Sidebar } from '../sidebar';
+import Sidebar from '../sidebar';
 import MobileHeader from '../mobile-header';
 
 const defTitle = 'Watto\'s Spaceship Emporium';
@@ -11,7 +11,7 @@ const App = (props) => {
   const { children, products, isSidebarOpen, isLarge, title } = props;
 
   return (
-    <Container p0>
+    <Container p0 css={{ minHeight: '100vh' }}>
       <Head>
         <title>{title ? `${title} - ${defTitle}` : defTitle}</title>
       </Head>
@@ -19,14 +19,13 @@ const App = (props) => {
         open={isLarge || isSidebarOpen}
         products={products}
         onDismiss={() => props.openSidebar(false)}
-      >
-        <Container p0>
-          {!isLarge && (
-            <MobileHeader openSidebar={props.openSidebar} />
-          )}
-          {children}
-        </Container>
-      </Sidebar>
+      />
+      <Container p0 width={null} css={{ marginLeft: isLarge ? 300 : 0 }}>
+        {!isLarge && (
+          <MobileHeader openSidebar={props.openSidebar} />
+        )}
+        {children}
+      </Container>
     </Container>
   );
 };

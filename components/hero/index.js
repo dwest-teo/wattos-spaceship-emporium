@@ -1,15 +1,11 @@
 import React from 'react';
-// import Starfield from './starfield';
+import Starfield from './starfield';
 import HeroContent from './hero-content';
 
 const Hero = ({ ...props }) => (
-  <HeroContent {...props} />
+  <Starfield {...props}>
+    <HeroContent />
+  </Starfield>
 );
-
-// const Hero = ({ ...props }) => (
-//   <Starfield {...props}>
-//     <HeroContent />
-//   </Starfield>
-// );
 
 export default Hero;

@@ -18,14 +18,12 @@ const settings = {
 
 const customColors = {
   dark: '#0f0f0f',
-  overlay: 'rgba(0, 0, 0, 0.1)',
-  bar: 'rgba(15, 15, 15, 0.9)',
+  overlay: 'rgba(0, 0, 0, 0.25)',
 };
 
 const applySettings = () => {
   config.set(settings);
   config.colors.dark = customColors.dark;
-  config.colors.bar = customColors.bar;
   config.colors.overlay = customColors.overlay;
 };
 

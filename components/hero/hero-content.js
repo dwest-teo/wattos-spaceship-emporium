@@ -11,21 +11,22 @@ const HeroContent = () => (
   >
     <Text
       center
-      gray2
+      yellow
       mt2
       mb4
       is="h1"
-      fontSize={1}
+      fontSize={[ 2, 2, 1, 1 ]}
+      css={{ fontWeight: 300 }}
     >
-      The final frontier...of savings!
+      No Jedi mind tricks...
     </Text>
     <Text
       center
-      mb2
+      mb3
       gray
-      fontSize={3}
+      fontSize={[ 4, 4, 3, 3 ]}
     >
-      Shop Watto&apos;s for the best deals on preowned spacecraft
+      Just great deals on preowned spacecraft!
     </Text>
   </Flex>
 );
