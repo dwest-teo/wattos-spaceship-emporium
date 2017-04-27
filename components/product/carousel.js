@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { ViewPager, Frame, Track, View, AnimatedView } from 'react-view-pager';
 import { Image } from '../base';
 
-// const { breakpoints } = config.get();
-
 const styles = {
   viewport: {
     display: 'flex',
@@ -81,6 +79,12 @@ class ProgressView extends Component {
   }
 }
 
+ProgressView.propTypes = {
+  children: PropTypes.node,
+};
+
+ProgressView.displayName = 'ProgressView';
+
 const ProgressBar = ({ progress }) => (
   <div style={styles.progressContainer}>
     <div
@@ -92,7 +96,12 @@ const ProgressBar = ({ progress }) => (
   </div>
 );
 
-const colors = [ '#209D22', '#106CCC', '#C1146B', '#11BDBF', '#8A19EA' ];
+ProgressBar.propTypes = {
+  progress: PropTypes.number,
+};
+
+ProgressBar.displayName = 'ProgressBar';
+
 const ProgressPage = ({ index, children, onClick }) => (
   <AnimatedView
     key={index}
@@ -111,13 +120,6 @@ const ProgressPage = ({ index, children, onClick }) => (
         [ 0, 1 ],
         [ 300, 0.5 ],
       ],
-    }, {
-      prop: 'backgroundColor',
-      stops: [
-        [ -300, '#cccccc' ],
-        [ 0, colors[index] ],
-        [ 300, '#cccccc' ],
-      ],
     } ]}
     style={styles.page}
     onClick={(e) => {
@@ -127,6 +129,14 @@ const ProgressPage = ({ index, children, onClick }) => (
     {children}
   </AnimatedView>
 );
+
+ProgressPage.propTypes = {
+  index: PropTypes.number,
+  children: PropTypes.node,
+  onClick: PropTypes.func,
+};
+
+ProgressPage.displayName = 'ProgressPage';
 
 class Carousel extends Component {
   constructor(props) {
@@ -139,7 +149,17 @@ class Carousel extends Component {
     this._handleScroll = this._handleScroll.bind(this);
   }
 
-  _handleScroll(progress, trackPosition) {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.productId !== nextProps.productId) {
+      this.setState({ currentView: 0, progress: 0 });
+    }
+  }
+
+  // _handleScroll(progress, trackPosition) {
+  //   this.setState({ progress });
+  // }
+
+  _handleScroll(progress) {
     this.setState({ progress });
   }
 
@@ -152,12 +172,13 @@ class Carousel extends Component {
           style={styles.frame}
         >
           <Track
+            infinite
             currentView={currentView}
+            style={styles.track}
             onScroll={this._handleScroll}
             onViewChange={(currentIndicies) => {
               this.setState({ currentView: currentIndicies[0] });
             }}
-            style={styles.track}
           >
             {this.props.images.map((image, i) => (
               <ProgressView key={i}>
@@ -172,9 +193,7 @@ class Carousel extends Component {
             <ProgressPage
               key={i}
               index={i}
-              onClick={() =>
-                this.setState({ currentView: i })
-              }
+              onClick={() => this.setState({ currentView: i })}
             >
               <Image src={`/static/images/product/${image.replace('.jpg', '-s.jpg')}`} />
             </ProgressPage>
@@ -184,5 +203,12 @@ class Carousel extends Component {
     );
   }
 }
+
+Carousel.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string),
+  productId: PropTypes.string,
+};
+
+Carousel.displayName = 'Carousel';
 
 export default Carousel;

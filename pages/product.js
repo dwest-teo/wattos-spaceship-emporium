@@ -23,7 +23,7 @@ const Product = (props) => {
     <App title={activeProduct.name} {...props}>
       <Container>
         <Text mb2 is="h1" fontSize={[ 3, 2, 2, 2 ]}>{activeProduct.name}</Text>
-        <Carousel images={activeProduct.images} />
+        <Carousel productId={activeProduct.slug} images={activeProduct.images} />
         <Flex
           my3
           alignItems="center"
