@@ -7,7 +7,7 @@ const DefinitionList = ({ entry, ...props }) => (
     <Box bold is="dt" display="inline-block" fontSize={6}>
       {entry.label}
     </Box>
-    <Box ml1 gray6 is="dd" display="inline-block" fontSize={6}>
+    <Box ml1 gray7 is="dd" display="inline-block" fontSize={6}>
       {entry.value}
     </Box>
   </Box>

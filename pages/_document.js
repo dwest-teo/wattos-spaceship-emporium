@@ -6,9 +6,9 @@ import { attachGlobalStyles } from '../components/base';
 class CustomDocument extends Document {
   static getInitialProps({ renderPage }) {
     const page = renderPage();
-
     attachGlobalStyles();
     const style = cxs.getCss();
+
     cxs.reset();
 
     return { ...page, style };
