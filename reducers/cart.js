@@ -10,7 +10,7 @@ const Cart = handleActions({
     return [ ...state, action.payload ];
   },
   [CartActions.removeFromCart]: (state, action) => {
-    return state.filter(p => p.slug !== action.payload.slug);
+    return state.filter(p => p.slug !== action.payload);
   },
 }, []);
 

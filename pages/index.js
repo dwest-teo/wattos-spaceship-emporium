@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import withRedux from 'next-redux-wrapper';
 import initStore from '../lib/store';
 import serverSideInit from '../lib/server-side-init';
-import { openSidebar } from '../actions/sidebar';
+import { openSidebar, toggleDropdown } from '../actions/menu';
+import { removeFromCart } from '../actions/cart';
 
 import App from '../components/app';
 import Grid from '../components/product-grid';
@@ -33,6 +34,8 @@ Home.propTypes = {
 
 export default withRedux(initStore, state => ({
   products: state.Products,
+  cartProducts: state.Cart,
   isLarge: state.browser.greaterThan.medium,
-  isSidebarOpen: state.Sidebar.open,
-}), { openSidebar })(Home);
+  isSidebarOpen: state.Menu.sidebarOpen,
+  isDropdownOpen: state.Menu.dropdownOpen,
+}), { openSidebar, toggleDropdown, removeFromCart })(Home);
