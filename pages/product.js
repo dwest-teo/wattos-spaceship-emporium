@@ -12,6 +12,7 @@ import {
   Flex,
   Box,
   DefinitionList,
+  Button,
   config,
 } from '../components/base';
 import Carousel from '../components/product/carousel';
@@ -33,14 +34,18 @@ const styles = {
   },
   details: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     [breakpoints[0]]: {
       flexDirection: 'column',
+      flexWrap: 'nowrap',
     },
     [breakpoints[1]]: {
       flexDirection: 'row',
+      flexWrap: 'wrap',
     },
     [breakpoints[2]]: {
       flexDirection: 'column',
+      flexWrap: 'nowrap',
     },
   },
 };
@@ -51,9 +56,14 @@ const Product = (props) => {
   return (
     <App title={activeProduct.name} {...props}>
       <Container>
-        <Text mb2 is="h1" fontSize={[ 3, 2, 2, 2 ]}>{activeProduct.name}</Text>
+        <Text mb2 is="h1" fontSize={[ 3, 2, 2, 2 ]}>
+          {activeProduct.name}
+        </Text>
         <Flex width={1} css={styles.gallery}>
-          <Flex width={[ 1, 0.6, 1, 0.6 ]}>
+          <Flex
+            width={[ 1, 0.7, 1, 0.7 ]}
+            pb={[ 2, 0, 2, 0 ]}
+          >
             <Carousel
               key={activeProduct.slug}
               productId={activeProduct.slug}
@@ -61,19 +71,21 @@ const Product = (props) => {
             />
           </Flex>
           <Flex
-            width={[ 1, 0.4, 1, 0.4 ]}
-            py={[ 2, 0, 2, 0 ]}
+            width={[ 1, 0.3, 1, 0.3 ]}
             pl={[ 0, 2, 0, 2 ]}
             alignItems="center"
             css={styles.details}
           >
-            <Box>
-              <Text gray6 fontSize={6}>{activeProduct.manufacturer}</Text>
-              <Text gray6 fontSize={6}>{activeProduct.class}</Text>
-            </Box>
-            <Text flexAuto right fontSize={3}>
-              {activeProduct.price || 'Call for Pricing'}
-            </Text>
+            <Flex width={1}>
+              <Box>
+                <Text gray6 fontSize={6}>{activeProduct.manufacturer}</Text>
+                <Text gray6 fontSize={6}>{activeProduct.class}</Text>
+              </Box>
+              <Text flexAuto right fontSize={3}>
+                {activeProduct.price || 'Call for Pricing'}
+              </Text>
+            </Flex>
+            <Button mt2 width={1}>Add to Cart</Button>
           </Flex>
         </Flex>
         <Box my3>

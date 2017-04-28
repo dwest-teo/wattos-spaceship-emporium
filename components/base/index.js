@@ -11,11 +11,14 @@ export {
 applySettings();
 
 // utility/fns
-export { default as attachGlobalStyles } from './global-styles';
+// export { default as attachGlobalStyles } from './global-styles';
+export { default as globalStyles } from './global-styles';
+export { default as reset } from './reset';
 
 // components
 export { default as Container } from './container';
 export { default as Flex } from './flex';
 export { default as Image } from './image';
 export { default as DefinitionList } from './definition-list';
+export { default as Button } from './button';
 export { List, ListItem } from './list';
