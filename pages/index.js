@@ -12,8 +12,8 @@ import Hero from '../components/hero';
 const Home = props => (
   <App {...props}>
     <Hero
-      heading="No Jedi mind tricks..."
-      subheading="Just great deals on preowned spacecraft!"
+      heading="You do not know the power..."
+      subheading="Of Watto's low interest rates!'"
     />
     <Grid
       products={props.products}
