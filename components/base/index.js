@@ -11,8 +11,7 @@ export {
 applySettings();
 
 // utility/fns
-// export { default as attachGlobalStyles } from './global-styles';
-export { default as globalStyles } from './global-styles';
+export { default as injectGlobalStyles } from './global-styles';
 export { default as reset } from './reset';
 
 // components
