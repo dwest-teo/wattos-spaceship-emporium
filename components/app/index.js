@@ -32,15 +32,15 @@ const App = (props) => {
         products={products}
         onDismiss={() => props.openSidebar(false)}
       />
+      <Content openSidebar={props.openSidebar} {...props}>
+        {children}
+      </Content>
       <CartDropdown
         cartProducts={cartProducts}
         open={isDropdownOpen}
         toggleDropdown={toggleDropdown}
         removeFromCart={removeFromCart}
       />
-      <Content openSidebar={props.openSidebar} {...props}>
-        {children}
-      </Content>
     </Container>
   );
 };

@@ -2,13 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, Box, Image, List, ListItem } from '../base';
 
+const styles = {
+  position: 'fixed',
+  bottom: '6px',
+  right: '6px',
+};
+
 const CartDropdown = (props) => {
   const { cartProducts, open, toggleDropdown, removeFromCart } = props;
 
   return (
-    <Box>
+    <Box css={styles}>
       <Text
         yellow
+        rounded
+        p2
+        bgDark
         is="button"
         onClick={() => toggleDropdown()}
       >
