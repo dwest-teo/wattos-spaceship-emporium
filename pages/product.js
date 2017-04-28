@@ -54,9 +54,10 @@ const Product = (props) => {
 };
 
 Product.getInitialProps = async ({ store, isServer, query }) => {
-  const { slug } = query;
+  const { slug } = await query;
 
   const init = await serverSideInit(store, isServer);
+  console.log(init);
   const productFeed = await store.getState().Product.feed;
   const activeProduct = await productFeed.find(p => p.slug === slug);
 

@@ -50,4 +50,6 @@ Card.propTypes = {
   slug: PropTypes.string,
 };
 
+Card.displayName = 'Card';
+
 export default Card;
