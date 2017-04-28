@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from '../../routes';
 import { Flex, Box, Text, Image } from '../base';
 
 const cardStyles = { flexBasis: 200 };
@@ -14,7 +14,7 @@ const Card = ({ name, price, thumbnail, slug }) => (
     flexAuto
     css={cardStyles}
   >
-    <Link prefetch href={`/product?s=${slug}`}>
+    <Link route="product" params={slug}>
       <Flex
         flexDirection="column"
         justifyContent="space-between"

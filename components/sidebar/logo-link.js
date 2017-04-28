@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from '../../routes';
 import { Flex, Text } from '../base';
 import SvgIcon from '../svg-icons';
 
 const LogoLink = ({ css }) => (
-  <Link prefetch href="/">
+  <Link prefetch route="index">
     <Flex
       white
       justifyContent="center"

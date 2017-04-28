@@ -44,21 +44,23 @@ class ProgressView extends Component {
     return (
       <StyledView flexAuto css={styles.view} {...this.props}>
         <AnimatedView
-          animations={[ {
-            prop: 'opacity',
-            stops: [
-              [ -200, 0 ],
-              [ 0, 1 ],
-              [ 200, 0 ],
-            ],
-          }, {
-            prop: 'translateY',
-            stops: [
-              [ -200, 50 ],
-              [ 0, 0 ],
-              [ 200, 50 ],
-            ],
-          } ]}
+          animations={[
+            {
+              prop: 'opacity',
+              stops: [
+                [ -200, 0 ],
+                [ 0, 1 ],
+                [ 200, 0 ],
+              ],
+            }, {
+              prop: 'translateY',
+              stops: [
+                [ -200, 50 ],
+                [ 0, 0 ],
+                [ 200, 50 ],
+              ],
+            },
+          ]}
         >
           {this.props.children}
         </AnimatedView>
@@ -97,21 +99,23 @@ const ProgressPage = ({ index, children, onClick }) => (
     mr2
     key={index}
     index={index}
-    animations={[ {
-      prop: 'scale',
-      stops: [
-        [ -300, 0.75 ],
-        [ 0, 1 ],
-        [ 300, 0.75 ],
-      ],
-    }, {
-      prop: 'opacity',
-      stops: [
-        [ -300, 0.5 ],
-        [ 0, 1 ],
-        [ 300, 0.5 ],
-      ],
-    } ]}
+    animations={[
+      {
+        prop: 'scale',
+        stops: [
+          [ -300, 0.75 ],
+          [ 0, 1 ],
+          [ 300, 0.75 ],
+        ],
+      }, {
+        prop: 'opacity',
+        stops: [
+          [ -300, 0.5 ],
+          [ 0, 1 ],
+          [ 300, 0.5 ],
+        ],
+      },
+    ]}
     width={70}
     css={styles.page}
     onClick={(e) => {
@@ -167,7 +171,6 @@ class Carousel extends Component {
           css={styles.frame}
         >
           <StyledTrack
-            infinite
             display="flex"
             currentView={currentView}
             onScroll={this._handleScroll}

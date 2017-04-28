@@ -10,7 +10,6 @@ import {
   Container,
   Text,
   Flex,
-  Image,
   Box,
   DefinitionList,
 } from '../components/base';
@@ -24,10 +23,7 @@ const Product = (props) => {
       <Container>
         <Text mb2 is="h1" fontSize={[ 3, 2, 2, 2 ]}>{activeProduct.name}</Text>
         <Carousel productId={activeProduct.slug} images={activeProduct.images} />
-        <Flex
-          my3
-          alignItems="center"
-        >
+        <Flex my3 alignItems="center">
           <Box>
             <Text gray6 fontSize={6}>{activeProduct.manufacturer}</Text>
             <Text gray6 fontSize={6}>{activeProduct.class}</Text>

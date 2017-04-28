@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from '../../routes';
 import {
   Box,
   Flex,
@@ -80,7 +80,7 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
         css={styles.bar}
       >
         <Box width={1} onClick={onDismiss}>
-          <Link prefetch href="/">
+          <Link prefetch route="index">
             <LogoLink css={styles.link} />
           </Link>
         </Box>
@@ -90,7 +90,7 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
         <List>
           {products.map((product, i) => (
             <ListItem key={i} onClick={onDismiss}>
-              <Link prefetch href={`/product?s=${product.slug}`}>
+              <Link prefetch route="product" params={{ slug: product.slug }}>
                 <Text gray is="a" css={styles.link}>
                   {product.name}
                 </Text>
