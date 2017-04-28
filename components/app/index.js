@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { Container } from '../base';
 import Sidebar from '../sidebar';
-import MobileHeader from '../mobile-header';
+import Content from './content';
 
-const defTitle = 'Watto\'s Spaceship Emporium';
+const defaultTitle = 'Watto\'s Spaceship Emporium';
+const pageTitle = title => title ? `${title} - ${defaultTitle}` : defaultTitle;
 
 const App = (props) => {
   const { children, products, isSidebarOpen, isLarge, title } = props;
@@ -13,19 +14,16 @@ const App = (props) => {
   return (
     <Container p0 css={{ minHeight: '100vh' }}>
       <Head>
-        <title>{title ? `${title} - ${defTitle}` : defTitle}</title>
+        <title>{pageTitle(title)}</title>
       </Head>
       <Sidebar
         open={isLarge || isSidebarOpen}
         products={products}
         onDismiss={() => props.openSidebar(false)}
       />
-      <Container p0 width={null} css={{ marginLeft: isLarge ? 300 : 0 }}>
-        {!isLarge && (
-          <MobileHeader openSidebar={props.openSidebar} />
-        )}
+      <Content openSidebar={props.openSidebar}>
         {children}
-      </Container>
+      </Content>
     </Container>
   );
 };

@@ -44,8 +44,7 @@
     "redux": "^3.6.0",
     "redux-actions": "^2.0.2",
     "redux-responsive": "^4.2.1",
-    "redux-thunk": "^2.2.0",
-    "reline": "^1.0.0-beta.3"
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "eslint-config-xo-react": "^0.11.1",

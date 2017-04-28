@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withAxs } from 'axs';
 import paths from './paths';
 
-const SvgIcon = ({ name, size = 24, fill = 'currentcolor', ...props }) => (
+const RawSvg = ({ name, size = 24, fill = 'currentcolor', ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 16 16"
@@ -19,10 +20,14 @@ const SvgIcon = ({ name, size = 24, fill = 'currentcolor', ...props }) => (
   </svg>
 );
 
-SvgIcon.propTypes = {
+RawSvg.propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.number,
   fill: PropTypes.string,
 };
+
+const SvgIcon = withAxs(RawSvg);
+
+SvgIcon.displayName = 'SvgIcon';
 
 export default SvgIcon;

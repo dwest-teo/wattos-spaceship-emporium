@@ -11,7 +11,7 @@ const LogoLink = ({ css }) => (
       justifyContent="center"
       alignItems="center"
     >
-      <SvgIcon name="watto" />
+      <SvgIcon yellow name="watto" />
       <Text ml1 fontSize={4} css={{ fontWeight: 300, ...css }}>
         Watto&apos;s Space Emporium
       </Text>

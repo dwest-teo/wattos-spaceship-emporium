@@ -26,4 +26,6 @@ Footer.propTypes = {
   iconNames: PropTypes.arrayOf(PropTypes.string),
 };
 
+Footer.displayName = 'Footer';
+
 export default Footer;
