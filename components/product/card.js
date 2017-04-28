@@ -14,7 +14,7 @@ const Card = ({ name, price, thumbnail, slug }) => (
     flexAuto
     css={cardStyles}
   >
-    <Link route="product" params={slug}>
+    <Link prefetch route="product" params={{ slug }}>
       <Flex
         flexDirection="column"
         justifyContent="space-between"

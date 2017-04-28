@@ -80,9 +80,7 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => {
         css={styles.bar}
       >
         <Box width={1} onClick={onDismiss}>
-          <Link prefetch route="index">
-            <LogoLink css={styles.link} />
-          </Link>
+          <LogoLink css={styles.link} />
         </Box>
         <Text mt4 mb2 bold white caps fontSize={4} width={1} is="span">
           Inventory
