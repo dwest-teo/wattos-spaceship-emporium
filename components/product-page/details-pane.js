@@ -7,6 +7,7 @@ import {
   Button,
   config,
 } from '../../components/base';
+import SvgIcon from '../../components/svg-icons';
 
 const { breakpoints } = config.get();
 
@@ -91,10 +92,16 @@ const ProductDetailsPane = (props) => {
         </Text>
         <Button
           mt3
+          bgDark
           width={1}
+          display="flex"
+          flexWrap="nowrap"
+          justifyContent="center"
+          alignItems="center"
           onClick={() => addToCart({ slug, name, thumbnail, price })}
         >
-          Add to Cart
+          <SvgIcon yellow mr2 name="plus" />
+          <Text white>Add to Cart</Text>
         </Button>
       </Flex>
     </Flex>
