@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Box, withAxs } from 'axs';
+import { Box, withAxs, config } from 'axs';
 import { ViewPager, Frame, Track, View, AnimatedView } from 'react-view-pager';
 import { Image } from '../base';
 
@@ -10,12 +10,27 @@ const StyledTrack = withAxs(Track);
 const StyledView = withAxs(View);
 const StyledAnimatedView = withAxs(AnimatedView);
 
+const { breakpoints } = config.get();
+
 const thumb = image => image.replace('.jpg', '-s.jpg');
 
 const styles = {
   viewport: {
-    maxWidth: 800,
+    maxWidth: 600,
     margin: '0 auto',
+    flexDirection: 'column',
+    [breakpoints[0]]: {
+      maxWidth: 800,
+      flexDirection: 'row',
+    },
+    [breakpoints[1]]: {
+      maxWidth: 684,
+      flexDirection: 'column !important',
+    },
+    [breakpoints[2]]: {
+      maxWidth: 706,
+      flexDirection: 'row !important',
+    },
   },
   frame: {
     maxWidth: 800,
@@ -32,6 +47,18 @@ const styles = {
     height: '100%',
     transformOrigin: 'left center',
     position: 'absolute',
+  },
+  pageNav: {
+    flexDirection: 'row',
+    [breakpoints[0]]: {
+      flexDirection: 'column',
+    },
+    [breakpoints[1]]: {
+      flexDirection: 'row !important',
+    },
+    [breakpoints[2]]: {
+      flexDirection: 'column !important',
+    },
   },
   page: {
     height: 50,
@@ -96,7 +123,8 @@ ProgressBar.displayName = 'ProgressBar';
 
 const ProgressPage = ({ index, children, onClick }) => (
   <StyledAnimatedView
-    mr2
+    mr={[ 2, 0, 2, 0 ]}
+    ml={[ 0, 2, 0, 3 ]}
     key={index}
     index={index}
     animations={[
@@ -161,7 +189,6 @@ class Carousel extends Component {
       <StyledViewPager
         width={1}
         display="flex"
-        flexDirection="column"
         css={styles.viewport}
       >
         <StyledFrame
@@ -190,10 +217,10 @@ class Carousel extends Component {
           my1
           mx0
           display="flex"
-          flexDirection="row"
           justifyContent="flex-start"
           alignItems="center"
           is="nav"
+          css={styles.pageNav}
         >
           {this.props.images.map((image, i) =>
             <ProgressPage
