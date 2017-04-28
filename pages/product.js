@@ -13,49 +13,45 @@ import {
   Box,
   DefinitionList,
 } from '../components/base';
-import ProductTopContainer from '../components/product/product-top-container';
-import ProductDetailsPane from '../components/product/product-details-pane';
+import TopContainer from '../components/product-page/top-container';
+import DetailsPane from '../components/product-page/details-pane';
 import Carousel from '../components/carousel';
 
-const Product = (props) => {
-  const { activeProduct } = props;
-
-  return (
-    <App title={activeProduct.name} {...props}>
-      <Container>
-        <Text mb2 is="h1" fontSize={[ 3, 2, 2, 2 ]}>
-          {activeProduct.name}
-        </Text>
-        <ProductTopContainer>
-          <Flex width={[ 1, 0.7, 1, 0.7 ]} pb={[ 2, 0, 2, 0 ]}>
-            <Carousel
-              key={activeProduct.slug}
-              productId={activeProduct.slug}
-              images={activeProduct.images}
-            />
-          </Flex>
-          <ProductDetailsPane
-            manufacturer={activeProduct.manufacturer}
-            type={activeProduct.class}
-            price={activeProduct.price}
+const Product = ({ activeProduct, ...props }) => (
+  <App title={activeProduct.name} {...props}>
+    <Container>
+      <Text mb2 is="h1" fontSize={[ 3, 2, 2, 2 ]}>
+        {activeProduct.name}
+      </Text>
+      <TopContainer>
+        <Flex width={[ 1, 0.7, 1, 0.7 ]} pb={[ 2, 0, 2, 0 ]}>
+          <Carousel
+            key={activeProduct.slug}
+            productId={activeProduct.slug}
+            images={activeProduct.images}
           />
-        </ProductTopContainer>
-        <Box my3>
-          <Text caps mb1 is="h3" fontSize={4}>About this ship:</Text>
-          <Text is="p">
-            {activeProduct.description}
-          </Text>
-        </Box>
-        <Box my3>
-          <Text caps mb1 is="h3" fontSize={4}>Specifications:</Text>
-          {activeProduct.techspecs.map((spec, i) => (
-            <DefinitionList key={i} entry={spec} />
-          ))}
-        </Box>
-      </Container>
-    </App>
-  );
-};
+        </Flex>
+        <DetailsPane
+          manufacturer={activeProduct.manufacturer}
+          type={activeProduct.class}
+          price={activeProduct.price}
+        />
+      </TopContainer>
+      <Box my3>
+        <Text caps mb1 is="h3" fontSize={4}>About this ship:</Text>
+        <Text is="p">
+          {activeProduct.description}
+        </Text>
+      </Box>
+      <Box my3>
+        <Text caps mb1 is="h3" fontSize={4}>Specifications:</Text>
+        {activeProduct.techspecs.map((spec, i) => (
+          <DefinitionList key={i} entry={spec} />
+        ))}
+      </Box>
+    </Container>
+  </App>
+);
 
 Product.getInitialProps = async ({ store, isServer, query }) => {
   const { slug } = await query;

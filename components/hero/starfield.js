@@ -10,6 +10,7 @@ const Starfield = ({ children, params = defParams, ...props }) => (
       {children}
     </Box>
     <Particles
+      height="300px"
       style={{
         position: 'absolute',
         top: 0,

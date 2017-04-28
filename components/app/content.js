@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, config } from '../base';
-import MobileHeader from '../mobile-header';
+import MobileHeader from './mobile-header';
 
 const { breakpoints } = config.get();
 const styles = {
