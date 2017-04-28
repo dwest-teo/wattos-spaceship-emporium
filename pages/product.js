@@ -12,8 +12,38 @@ import {
   Flex,
   Box,
   DefinitionList,
+  config,
 } from '../components/base';
 import Carousel from '../components/product/carousel';
+
+const { breakpoints } = config.get();
+
+const styles = {
+  gallery: {
+    flexDirection: 'column',
+    [breakpoints[0]]: {
+      flexDirection: 'row',
+    },
+    [breakpoints[1]]: {
+      flexDirection: 'column',
+    },
+    [breakpoints[2]]: {
+      flexDirection: 'row',
+    },
+  },
+  details: {
+    flexDirection: 'row',
+    [breakpoints[0]]: {
+      flexDirection: 'column',
+    },
+    [breakpoints[1]]: {
+      flexDirection: 'row',
+    },
+    [breakpoints[2]]: {
+      flexDirection: 'column',
+    },
+  },
+};
 
 const Product = (props) => {
   const { activeProduct } = props;
@@ -22,28 +52,38 @@ const Product = (props) => {
     <App title={activeProduct.name} {...props}>
       <Container>
         <Text mb2 is="h1" fontSize={[ 3, 2, 2, 2 ]}>{activeProduct.name}</Text>
-        <Carousel productId={activeProduct.slug} images={activeProduct.images} />
-        <Flex my3 alignItems="center">
-          <Box>
-            <Text gray6 fontSize={6}>{activeProduct.manufacturer}</Text>
-            <Text gray6 fontSize={6}>{activeProduct.class}</Text>
-          </Box>
-          <Text flexAuto right fontSize={3}>
-            {activeProduct.price || 'Call for Pricing'}
-          </Text>
+        <Flex width={1} css={styles.gallery}>
+          <Flex width={[ 1, 0.6, 1, 0.6 ]}>
+            <Carousel
+              key={activeProduct.slug}
+              productId={activeProduct.slug}
+              images={activeProduct.images}
+            />
+          </Flex>
+          <Flex
+            width={[ 1, 0.4, 1, 0.4 ]}
+            py={[ 2, 0, 2, 0 ]}
+            pl={[ 0, 2, 0, 2 ]}
+            alignItems="center"
+            css={styles.details}
+          >
+            <Box>
+              <Text gray6 fontSize={6}>{activeProduct.manufacturer}</Text>
+              <Text gray6 fontSize={6}>{activeProduct.class}</Text>
+            </Box>
+            <Text flexAuto right fontSize={3}>
+              {activeProduct.price || 'Call for Pricing'}
+            </Text>
+          </Flex>
         </Flex>
         <Box my3>
-          <Text caps mb1 is="h3" fontSize={4}>
-            About this ship:
-          </Text>
+          <Text caps mb1 is="h3" fontSize={4}>About this ship:</Text>
           <Text is="p">
             {activeProduct.description}
           </Text>
         </Box>
         <Box my3>
-          <Text caps mb1 is="h3" fontSize={4}>
-            Specifications:
-          </Text>
+          <Text caps mb1 is="h3" fontSize={4}>Specifications:</Text>
           {activeProduct.techspecs.map((spec, i) => (
             <DefinitionList key={i} entry={spec} />
           ))}
