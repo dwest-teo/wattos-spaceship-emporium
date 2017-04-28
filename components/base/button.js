@@ -5,7 +5,6 @@ import reset from './reset';
 const style = {
   ...reset,
   color: config.colors.white,
-  backgroundColor: config.colors.blue,
   cursor: 'pointer',
   ':hover': {
     opacity: 0.5,
@@ -23,11 +22,12 @@ const style = {
 
 const Button = props => (
   <Box
-    is="button"
-    css={style}
     py2
     px3
     bold
+    bgBlue
+    is="button"
+    css={style}
     display="block"
     {...props}
   />

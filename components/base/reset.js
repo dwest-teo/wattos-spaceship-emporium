@@ -4,7 +4,6 @@ export default {
   margin: 0,
   padding: 0,
   color: 'inherit',
-  backgroundColor: 'transparent',
   border: '1px solid transparent',
   textDecoration: 'none',
   boxShadow: 'none',
