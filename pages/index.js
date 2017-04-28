@@ -32,7 +32,7 @@ Home.propTypes = {
 };
 
 export default withRedux(initStore, state => ({
-  products: state.Product.feed,
+  products: state.Products,
   isLarge: state.browser.greaterThan.medium,
   isSidebarOpen: state.Sidebar.open,
 }), { openSidebar })(Home);

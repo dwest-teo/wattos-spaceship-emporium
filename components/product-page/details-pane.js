@@ -66,36 +66,49 @@ const styles = {
   },
 };
 
-const ProductDetailsPane = ({ manufacturer, type, price, ...props }) => (
-  <Flex
-    pl={[ 0, 2, 0, 2 ]}
-    alignItems="flex-start"
-    css={styles.detailsPaneOuter}
-    {...props}
-  >
+const ProductDetailsPane = (props) => {
+  const { manufacturer, type, price, slug, name, thumbnail, addToCart } = props;
+
+  return (
     <Flex
-      pb={[ 0, 2, 0, 2 ]}
-      width={1}
-      css={styles.detailsPaneInner}
+      pl={[ 0, 2, 0, 2 ]}
+      alignItems="flex-start"
+      css={styles.detailsPaneOuter}
     >
-      <Box fontSize={[ 6, 5, 6, 5 ]}>
-        <Text caps bold mt3 gray9 css={styles.optLabel}>Manufacturer</Text>
-        <Text gray6>{manufacturer}</Text>
-        <Text caps bold mt3 gray9 css={styles.optLabel}>Class</Text>
-        <Text gray6>{type}</Text>
-      </Box>
-      <Text fontSize={3} css={styles.price}>
-        {price || 'Call for Pricing'}
-      </Text>
-      <Button mt3 width={1}>Add to Cart</Button>
+      <Flex
+        pb={[ 0, 2, 0, 2 ]}
+        width={1}
+        css={styles.detailsPaneInner}
+      >
+        <Box fontSize={[ 6, 5, 6, 5 ]}>
+          <Text caps bold mt3 gray9 css={styles.optLabel}>Manufacturer</Text>
+          <Text gray6>{manufacturer}</Text>
+          <Text caps bold mt3 gray9 css={styles.optLabel}>Class</Text>
+          <Text gray6>{type}</Text>
+        </Box>
+        <Text fontSize={3} css={styles.price}>
+          {price || 'Call for Pricing'}
+        </Text>
+        <Button
+          mt3
+          width={1}
+          onClick={() => addToCart({ slug, name, thumbnail, price })}
+        >
+          Add to Cart
+        </Button>
+      </Flex>
     </Flex>
-  </Flex>
-);
+  );
+};
 
 ProductDetailsPane.propTypes = {
   manufacturer: PropTypes.string,
   type: PropTypes.string,
   price: PropTypes.string,
+  name: PropTypes.string,
+  slug: PropTypes.string,
+  thumbnail: PropTypes.string,
+  addToCart: PropTypes.func,
 };
 
 ProductDetailsPane.displayName = 'ProductDetailsPane';

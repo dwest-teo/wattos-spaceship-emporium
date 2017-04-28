@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import { createResponsiveStateReducer } from 'redux-responsive';
-import Product from './product';
+import Products from './products';
 import Sidebar from './sidebar';
+import Cart from './cart';
 
 export default combineReducers({
   browser: createResponsiveStateReducer({
@@ -9,6 +10,7 @@ export default combineReducers({
     medium: 832,
     large: 1024,
   }),
-  Product,
+  Products,
   Sidebar,
+  Cart,
 });
