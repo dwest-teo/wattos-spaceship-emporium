@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyledView, StyledAnimatedView } from './carousel-hocs';
+import { StyledView, StyledAnimatedView } from './hocs';
 
 const styles = {
   userSelect: 'none',

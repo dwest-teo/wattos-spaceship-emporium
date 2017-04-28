@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'axs';
 import { Image } from '../base';
-import { StyledViewPager, StyledFrame, StyledTrack } from './carousel-hocs';
+import { StyledViewPager, StyledFrame, StyledTrack } from './hocs';
 import ProgressPage from './progress-page';
 import ProgressView from './progress-view';
 import ProgressBar from './progress-bar';

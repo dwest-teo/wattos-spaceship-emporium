@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledAnimatedView } from './carousel-hocs';
+import { StyledAnimatedView } from './hocs';
 
 const styles = {
   height: 50,
