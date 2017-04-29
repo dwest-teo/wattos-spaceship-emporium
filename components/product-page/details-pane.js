@@ -56,13 +56,13 @@ const styles = {
   price: {
     margin: '0 0 0 auto',
     [breakpoints[0]]: {
-      margin: 'auto !important',
+      margin: '60px auto 0 0 !important',
     },
     [breakpoints[1]]: {
-      margin: '0 0 0 auto !important',
+      margin: 'auto 0 0 auto !important',
     },
     [breakpoints[2]]: {
-      margin: 'auto !important',
+      margin: '60px auto 0 0 !important',
     },
   },
 };
@@ -93,6 +93,7 @@ const ProductDetailsPane = (props) => {
         <Button
           mt3
           bgDark
+          caps
           width={1}
           display="flex"
           flexWrap="nowrap"
