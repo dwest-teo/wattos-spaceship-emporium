@@ -1,13 +1,11 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import cxs from 'cxs/monolithic';
-import { injectGlobalStyles } from '../components/base';
+import { cxs } from 'axs';
+import { globalStyles } from '../components/base';
 
 class CustomDocument extends Document {
   static getInitialProps({ renderPage }) {
     const page = renderPage();
-
-    injectGlobalStyles(cxs);
     const style = cxs.getCss();
     cxs.reset();
 
@@ -18,8 +16,7 @@ class CustomDocument extends Document {
     return (
       <html>
         <Head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <style>{globalStyles}</style>
           <style dangerouslySetInnerHTML={{ __html: this.props.style }} />
         </Head>
         <body>
