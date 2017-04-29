@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SvgIcon from '../svg-icons';
 import { Box, Text, Flex } from '../base';
+import linkStyle from './link-style';
 
 const Footer = ({ iconNames }) => (
   <Box center gray width={1} css={{ marginTop: 'auto' }}>
@@ -15,9 +16,9 @@ const Footer = ({ iconNames }) => (
       justifyContent="space-around"
       alignItems="center"
     >
-      {iconNames.map((name, i) => (
-        <SvgIcon key={i} name={name} />
-      ))}
+      {iconNames.map((name => (
+        <SvgIcon key={name} name={name} css={linkStyle} />
+      )))}
     </Flex>
   </Box>
 );

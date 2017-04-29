@@ -7,21 +7,28 @@ const { breakpoints } = config.get();
 const styles = {
   container: {
     position: 'fixed',
-    bottom: 0,
+    bottom: -48,
     right: 0,
     left: 0,
+    transform: 'none',
+    transition: `transform .3s ${config.easing}`,
   },
   bar: {
+    height: 48,
     cursor: 'pointer',
+  },
+  link: {
+    cursor: 'pointer',
+  },
+  list: {
+    maxHeight: 255,
+    overflowY: 'auto',
   },
   textContainer: {
     flexDirection: 'column',
     [breakpoints[0]]: {
       flexDirection: 'row',
     },
-  },
-  removeLink: {
-    cursor: 'pointer',
   },
 };
 
@@ -32,7 +39,7 @@ const CartDropdown = (props) => {
     <Box
       css={{
         ...styles.container,
-        display: cartProducts.length > 0 ? null : 'none',
+        transform: cartProducts.length > 0 ? 'translateY(-48px)' : null,
       }}
     >
       <Flex
@@ -52,7 +59,10 @@ const CartDropdown = (props) => {
           mb0
           center
           bgWhite
-          css={{ marginLeft: isLarge ? 300 : 0 }}
+          css={{
+            ...styles.list,
+            marginLeft: isLarge ? 300 : 0,
+          }}
         >
           {cartProducts.map(product => (
             <ListItem
@@ -84,7 +94,7 @@ const CartDropdown = (props) => {
               <Text
                 blue
                 fontSize={6}
-                css={styles.removeLink}
+                css={styles.link}
                 onClick={() => removeFromCart(product.slug)}
               >
                 Remove

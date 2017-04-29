@@ -10,7 +10,7 @@ const styles = {
   left: -300,
   zIndex: 30,
   transform: 'none',
-  transition: 'transform .3s cubic-bezier(0.645, 0.045, 0.355, 1.000)',
+  transition: `transform .3s ${config.easing}`,
   overflowX: 'hidden',
   overflowY: 'auto',
   [breakpoints[1]]: {
