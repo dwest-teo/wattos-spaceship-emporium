@@ -13,7 +13,9 @@ import LogoLink from './logo-link';
 import Footer from './footer';
 import linkStyle from './link-style';
 
-const Sidebar = ({ open, onDismiss, products, ...props }) => (
+const isActive = (activeLink, slug) => activeLink === slug;
+
+const Sidebar = ({ open, onDismiss, productLinks, activeLink, ...props }) => (
   <Box>
     <Overlay open={open} onDismiss={onDismiss} />
     <Bar open={open} {...props}>
@@ -24,10 +26,14 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => (
         Inventory
       </Text>
       <List>
-        {products.map((product, i) => (
+        {productLinks.map((product, i) => (
           <ListItem key={i} onClick={onDismiss}>
             <Link prefetch route="product" params={{ slug: product.slug }}>
-              <Text gray is="a" css={linkStyle}>
+              <Text
+                color={isActive(activeLink, product.slug) ? 'white' : 'gray'}
+                is="a"
+                css={linkStyle}
+              >
                 {product.name}
               </Text>
             </Link>
@@ -49,7 +55,8 @@ const Sidebar = ({ open, onDismiss, products, ...props }) => (
 
 Sidebar.propTypes = {
   open: PropTypes.bool,
-  products: PropTypes.array,
+  productLinks: PropTypes.array,
+  activeLink: PropTypes.string,
   onDismiss: PropTypes.func,
 };
 

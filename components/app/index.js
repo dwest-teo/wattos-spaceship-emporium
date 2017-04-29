@@ -9,11 +9,14 @@ import Content from './content';
 const defaultTitle = 'Watto\'s Spaceship Emporium';
 const pageTitle = title => title ? `${title} - ${defaultTitle}` : defaultTitle;
 
+const makeLinks = products => products.map(p => ({ name: p.name, slug: p.slug }));
+
 const App = (props) => {
   const {
     children,
     products,
     cartProducts,
+    activeLink,
     isSidebarOpen,
     isDropdownOpen,
     isLarge,
@@ -29,7 +32,8 @@ const App = (props) => {
       </Head>
       <Sidebar
         open={isLarge || isSidebarOpen}
-        products={products}
+        productLinks={makeLinks(products)}
+        activeLink={activeLink}
         onDismiss={() => props.openSidebar(false)}
       />
       <Content openSidebar={props.openSidebar} {...props}>
@@ -50,6 +54,7 @@ App.propTypes = {
   cartProducts: PropTypes.array,
   children: PropTypes.node,
   isLarge: PropTypes.bool,
+  activeLink: PropTypes.string,
   isSidebarOpen: PropTypes.bool,
   isDropdownOpen: PropTypes.bool,
   title: PropTypes.string,

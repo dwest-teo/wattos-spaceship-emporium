@@ -19,7 +19,7 @@ import DetailsPane from '../components/product-page/details-pane';
 import Carousel from '../components/carousel';
 
 const Product = ({ activeProduct, addToCart, ...props }) => (
-  <App title={activeProduct.name} {...props}>
+  <App title={activeProduct.name} activeLink={activeProduct.slug} {...props}>
     <Container>
       <Text mb2 is="h1" fontSize={[ 3, 2, 2, 2 ]}>
         {activeProduct.name}
