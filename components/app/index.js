@@ -42,6 +42,7 @@ const App = (props) => {
       <CartDropdown
         cartProducts={cartProducts}
         open={isDropdownOpen}
+        isLarge={isLarge}
         toggleDropdown={toggleDropdown}
         removeFromCart={removeFromCart}
       />

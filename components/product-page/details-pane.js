@@ -10,7 +10,6 @@ import {
 import SvgIcon from '../../components/svg-icons';
 
 const { breakpoints } = config.get();
-
 const styles = {
   detailsPaneOuter: {
     width: '100%',

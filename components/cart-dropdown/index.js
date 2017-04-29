@@ -1,34 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, Box, Image, List, ListItem } from '../base';
+import { Text, Flex, Box, Image, List, ListItem, config } from '../base';
+import SvgIcon from '../svg-icons';
 
+const { breakpoints } = config.get();
 const styles = {
-  position: 'fixed',
-  bottom: '6px',
-  right: '6px',
+  container: {
+    position: 'fixed',
+    bottom: 0,
+    right: 0,
+    left: 0,
+  },
+  bar: {
+    cursor: 'pointer',
+  },
+  textContainer: {
+    flexDirection: 'column',
+    [breakpoints[0]]: {
+      flexDirection: 'row',
+    },
+  },
+  removeLink: {
+    cursor: 'pointer',
+  },
 };
 
 const CartDropdown = (props) => {
-  const { cartProducts, open, toggleDropdown, removeFromCart } = props;
+  const { cartProducts, open, isLarge, toggleDropdown, removeFromCart } = props;
 
   return (
-    <Box css={styles}>
-      <Text
-        yellow
-        rounded
-        p2
+    <Box
+      css={{
+        ...styles.container,
+        display: cartProducts.length > 0 ? null : 'none',
+      }}
+    >
+      <Flex
+        py2
+        px2
         bgDark
-        is="button"
+        justifyContent="flex-end"
+        alignItems="center"
+        css={styles.bar}
         onClick={() => toggleDropdown()}
       >
-        {cartProducts.length > 0 && cartProducts.length}
-      </Text>
+        <SvgIcon yellow name="cart" />
+        <Text ml2 white>{cartProducts.length}</Text>
+      </Flex>
       {open && (
-        <List m0 center>
+        <List
+          mb0
+          center
+          bgWhite
+          css={{ marginLeft: isLarge ? 300 : 0 }}
+        >
           {cartProducts.map(product => (
             <ListItem
-              p3
-              borderTop
+              mb0
+              py1
+              px3
               borderBottom
               borderGray
               display="flex"
@@ -41,24 +71,26 @@ const CartDropdown = (props) => {
                 borderRadius={100}
                 src={`/static/images/thumbnails/${product.img}`}
               />
-              <Box pl2 flexAuto>
+              <Flex
+                px2
+                flexAuto
+                justifyContent="space-around"
+                alignItems="center"
+                css={styles.textContainer}
+              >
                 <Text fontSize={5}>{product.name}</Text>
-                <Text gray fontSize={5}>{product.price}</Text>
-              </Box>
+                <Text gray7 fontSize={5}>{product.price}</Text>
+              </Flex>
               <Text
                 blue
                 fontSize={6}
+                css={styles.removeLink}
                 onClick={() => removeFromCart(product.slug)}
               >
                 Remove
               </Text>
             </ListItem>
           ))}
-          {cartProducts.length === 0 && (
-            <ListItem center p3>
-              <Text fontSize={5}>Nothing here yet!</Text>
-            </ListItem>
-          )}
         </List>
       )}
     </Box>
@@ -73,6 +105,7 @@ CartDropdown.propTypes = {
     price: PropTypes.string,
   })),
   open: PropTypes.bool,
+  isLarge: PropTypes.bool,
   toggleDropdown: PropTypes.func,
   removeFromCart: PropTypes.func,
 };
