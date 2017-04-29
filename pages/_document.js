@@ -18,6 +18,7 @@ class CustomDocument extends Document {
         <Head>
           <style>{globalStyles}</style>
           <style dangerouslySetInnerHTML={{ __html: this.props.style }} />
+          <link rel="icon" href="static/favicon.ico" type="image/x-icon" />
         </Head>
         <body>
           <Main />
