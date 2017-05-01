@@ -1,5 +1,5 @@
 # wattos-spaceship-emporium
-> Node.js/React universal web app, offering only the finest preowned spacecraft.  watto.donnywest.com
+> Node.js/React universal web app, offering only the finest preowned spacecraft.  [https://watto.donnywest.com](https://watto.donnywest.com)
 
 ## About
 
