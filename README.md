@@ -1,9 +1,9 @@
 # wattos-spaceship-emporium
-> Node.js/React universal web app, offering only the finest preowned spacecraft
+> Node.js/React universal web app, offering only the finest preowned spacecraft.  watto.donnywest.com
 
 ## About
 
-This is a universal JavaScript application written in ES6/7+.  Next.js is used to handle server-side rendering and routing, with a slim native Node.js http server in front of it to support parameterized routing.  Application state is managed by Redux, and CSS-in-JS styling is handled using CSX.
+This is a universal JavaScript application written in ES6/7+.  Next.js is used to handle server-side rendering and routing, with a slim native Node.js http server in front of it to support parameterized routing.  Application state is managed by Redux, and CSS-in-JS styling is handled using CSX.  A live demo is available at [https://watto.donnywest.com](https://watto.donnywest.com).
 
 ## Installation/Development
 
@@ -17,8 +17,24 @@ yarn
 ```
 
 To run locally for development including hot module replacement, run the dev script:
-```base
+```bash
 $ yarn run dev
 ```
+
+## Deployment
+To build for deployment, run the build script:
+```bash
+$ yarn run build
+```
+
+The "build" directory will contain the built application, ready to deploy.
+
+Alternatively, you can use Now.sh for rapid deployment.  Edit the "now" configuration in package.json as appropriate, and deploy with:
+```bash
+$ now
+```
+
+It doesn't get much easier than that!
+
 
 [![forthebadge](http://forthebadge.com/images/badges/fo-real.svg)](http://forthebadge.com)
