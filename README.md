@@ -12,8 +12,8 @@ To install and develop this application, you'll need a modern version of Node.js
 First, clone this repository, go to the new directory, and install dependencies:
 ```bash
 $ git clone https://github.com/dwest-teo/wattos-spaceship-emporium.git
-cd wattos-spaceship-emporium
-yarn
+$ cd wattos-spaceship-emporium
+$ yarn
 ```
 
 To run locally for development including hot module replacement, run the dev script:
