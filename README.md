@@ -3,7 +3,7 @@
 
 ## About
 
-This is a universal JavaScript application written in ES6/7+.  Next.js is used to handle server-side rendering and routing, with a slim native Node.js http server in front of it to support parameterized routing.  Application state is managed by Redux, and CSS-in-JS styling is handled using CSX.  A live demo is available at [https://watto.donnywest.com](https://watto.donnywest.com).
+This is a universal JavaScript application written in ES6/7+.  Next.js is used to handle server-side rendering and routing, with a slim native Node.js http server in front of it to support parameterized routing.  Application state is managed by Redux, and CSS-in-JS styling is handled using CXS.  A live demo is available at [https://watto.donnywest.com](https://watto.donnywest.com).
 
 ## Installation/Development
 
